@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvador Indigent Memorial Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Controls for printing options -->
+    <div class="controls-container">
+        <div class="paper-size">
+            <label for="paper-select">Paper Size:</label>
+            <select id="paper-select">
+                <option value="a4">A4 (210×297mm)</option>
+                <option value="letter">Letter (8.5×11")</option>
+                <option value="legal">Legal (8.5×14")</option>
+            </select>
+        </div>
+        <div class="action-buttons">
+            <button id="print-btn" class="action-btn">Print Form</button>
+            <button id="save-pdf-btn" class="action-btn">Save as PDF</button>
+        </div>
+    </div>
+
+    <div id="form-container" class="container landscape">
+        <!-- Left Side -->
+        <div class="left-panel">
+            <div class="header">
+                <h1>SALVADOR INDIGENT MEMORIAL SERVICES</h1>
+                <div class="company-info">
+                    <div class="logo-container">
+                        <img src="logo.png" alt="SIMS Logo" class="logo">
+                    </div>
+                    <div class="address">
+                        P-8 SINAYAWAN, VALENCIA CITY BUKIDNON<br>
+                        VALENCIA BRANCH: 09267921987/09674486610<br>
+                        CDO BRANCH: 09063686674/09972118182<br>
+                        TIN:776-384-273-000<br>
+                        GCASH: 09267921987<br>
+                        ELENA P. SALVADOR
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="bank-title">Semi-Banking System</h2>
+            
+            <div class="features-section">
+                <h3>SPECIAL FEATURES:</h3>
+                <ul>
+                    <li>TRANSFERABLE: you may transfer to any living person.</li>
+                    <li>ASSIGNABLE: you may assign any deceased person.</li>
+                    <li>LOANABLE: after fully paid.</li>
+                    <li>WITHDRAWABLE: after 10 years fully paid.</li>
+                    <li>NO AGE LIMITS.</li>
+                    <li>No medical examination required.</li>
+                    <li>Money back 20 years after fully paid.</li>
+                </ul>
+            </div>
+            
+            <div class="benefits-section">
+                <h3>SPECIAL BENEFITS</h3>
+                <p>Accidental Death - No pay the balance with free memorial packages.</p>
+            </div>
+            
+            <div class="inclusions-section">
+                <h3>MEMORIAL SERVICE INCLUSIONS</h3>
+                <div class="inclusions-grid">
+                    <div class="inclusions-column">
+                        <div class="inclusion-item">✓ CASKET</div>
+                        <div class="inclusion-item">✓ EMBALMING</div>
+                        <div class="inclusion-item">✓ LAPIDA</div>
+                        <div class="inclusion-item">✓ CASKET DECORATION</div>
+                    </div>
+                    <div class="inclusions-column">
+                        <div class="inclusion-item">✓ TRIBUTE/BALIK-LANTAW</div>
+                        <div class="inclusion-item">✓ FILM VIEWING</div>
+                        <div class="inclusion-item">✓ PICTURE WITH FRAME</div>
+                        <div class="inclusion-item">✓ TARPAULINE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="plans-section">
+                <table class="plans-table">
+                    <tr>
+                        <td>ORQUIDS PLAN</td>
+                        <td>HALF GLASS WOOD CASKET</td>
+                        <td class="price">₱ 35,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>SUNFLOWER PLAN</td>
+                        <td>FULL GLASS WOOD CASKET DOUBLEDOOR</td>
+                        <td class="price">₱ 45,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>ANTHURIUM PLAN</td>
+                        <td>FULL GLASS METAL CASKET DOUBLEDOOR</td>
+                        <td class="price">₱ 60,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>SAMPAGUITA PLAN</td>
+                        <td>FULL GLASS METAL CASKET STANDARD SIZE</td>
+                        <td class="price">₱ 170,000.00</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="client-copy">
+                <div class="client-form">
+                    <h4>CLIENT'S COPY</h4>
+                    <div class="field-row">
+                        <label>NAME:</label>
+                        <input type="text" class="styled-input">
+                    </div>
+                    <div class="field-row">
+                        <label>ADDRESS:</label>
+                        <input type="text" class="styled-input">
+                    </div>
+                    <div class="field-row">
+                        <label>CONTACT:</label>
+                        <input type="text" class="styled-input">
+                    </div>
+                    <div class="field-row">
+                        <label>SIGNATURE:</label>
+                        <input type="text" class="styled-input">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slogan">
+                <p>"MONEY" MANIGURO mag SIMS tayo!</p>
+                <p>SERBISYONG TOTOO.</p>
+            </div>
+        </div>
+        
+        <!-- Right Side -->
+        <div class="right-panel">
+            <div class="header-right">
+                <div class="logo-container">
+                    <img src="logo.png" alt="SIMS Logo" class="logo">
+                </div>
+                <h1>SALVADOR INDIGENT MEMORIAL SERVICES</h1>
+                <div class="address">
+                    P-8 SINAYAWAN, VALENCIA CITY BUKIDNON<br>
+                    VALENCIA BRANCH: 09267921987/09674486610<br>
+                    CDO BRANCH: 09063686674/09972118182
+                </div>
+            </div>
+            
+            <div class="membership-section">
+                <h2>MEMBERSHIP DATA</h2>
+                
+                <div class="name-fields">
+                    <div class="name-field">
+                        <label>LAST NAME</label>
+                        <input type="text" class="styled-input">
+                    </div>
+                    <div class="name-field">
+                        <label>FIRST NAME</label>
+                        <input type="text" class="styled-input">
+                    </div>
+                    <div class="name-field">
+                        <label>MIDDLE NAME</label>
+                        <input type="text" class="styled-input">
+                    </div>
+                </div>
+                
+                <div class="personal-info">
+                    <div class="field-row">
+                        <label>ADDRESS:</label>
+                        <input type="text" class="styled-input">
+                    </div>
+                    
+                    <div class="field-row">
+                        <label>CONTACT:</label>
+                        <input type="text" class="styled-input short-input">
+                        <label>CIVIL STATUS:</label>
+                        <input type="text" class="styled-input short-input">
+                    </div>
+                    
+                    <div class="field-row three-fields">
+                        <label>GENDER:</label>
+                        <input type="text" class="styled-input short-input">
+                        <label>OCCUPATION:</label>
+                        <input type="text" class="styled-input short-input">
+                        <label>AGE:</label>
+                        <input type="text" class="styled-input short-input">
+                    </div>
+                    
+                    <div class="field-row">
+                        <label>RELIGION:</label>
+                        <input type="text" class="styled-input short-input">
+                        <label>DATE OF BIRTH:</label>
+                        <input type="text" class="styled-input short-input">
+                    </div>
+                    
+                    <div class="field-row">
+                        <input type="checkbox" id="fb-account" class="styled-checkbox">
+                        <label for="fb-account">FACEBOOK ACCOUNT</label>
+                        <input type="text" class="styled-input">
+                    </div>
+                </div>
+                
+                <div class="beneficiaries-section">
+                    <h3>BENEFICIARIES:</h3>
+                    <div class="beneficiaries-headers">
+                        <div class="name-header">NAME</div>
+                        <div class="age-header">AGE</div>
+                        <div class="relation-header">RELATION</div>
+                    </div>
+                    
+                    <div id="beneficiaries-list">
+                        <div class="beneficiary-line"></div>
+                        <div class="beneficiary-line"></div>
+                        <div class="beneficiary-line"></div>
+                        <div class="beneficiary-line"></div>
+                        <div class="beneficiary-line"></div>
+                    </div>
+                    
+                    <div class="add-beneficiary-container">
+                        <button id="add-beneficiary" class="add-btn">Add BENEFICIARIES NAME</button>
+                    </div>
+                </div>
+                
+                <div class="signature-section">
+                    <input type="text" class="signature-input">
+                    <label>PRINTED FULLNAME&SIGNATURE</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Paper size selection
+        const paperSelect = document.getElementById('paper-select');
+        const formContainer = document.getElementById('form-container');
+        
+        paperSelect.addEventListener('change', function() {
+            // Remove all current size classes
+            formContainer.classList.remove('a4', 'letter', 'legal');
+            // Add the selected size class
+            formContainer.classList.add(this.value);
+        });
+        
+        // Print form functionality
+        document.getElementById('print-btn').addEventListener('click', function() {
+            window.print();
+        });
+        
+        // Save as PDF functionality
+        document.getElementById('save-pdf-btn').addEventListener('click', function() {
+            const paperSize = paperSelect.value;
+            
+            // Configure pdf dimensions based on selected paper size
+            let pdfConfig = {
+                margin: 5,
+                filename: 'salvador-memorial-services-form.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', orientation: 'landscape' }
+            };
+            
+            // Set the format based on paper selection
+            if (paperSize === 'a4') {
+                pdfConfig.jsPDF.format = 'a4';
+            } else if (paperSize === 'letter') {
+                pdfConfig.jsPDF.format = 'letter';
+            } else if (paperSize === 'legal') {
+                pdfConfig.jsPDF.format = [356, 216]; // Legal dimensions in mm
+            }
+            
+            // Generate PDF from form container
+            html2pdf().set(pdfConfig).from(document.getElementById('form-container')).save();
+        });
+        
+        // Add beneficiary functionality
+        document.getElementById('add-beneficiary').addEventListener('click', function() {
+            const beneficiariesList = document.getElementById('beneficiaries-list');
+            const newLine = document.createElement('div');
+            newLine.className = 'beneficiary-line';
+            
+            beneficiariesList.appendChild(newLine);
+        });
+    </script>
+</body>
+</html>
