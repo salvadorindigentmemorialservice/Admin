@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvador Indigent Memorial Services - Ribbon Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #00802b;
+            --accent-color: #e0f0ff;
+            --light-gray: #f5f5f5;
+            --border-color: #ddd;
+            --text-color: #333;
+            --white: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-gray) 0%, #e4eaf5 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-color);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+        
+        .logo-container {
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .navigation {
+            background-color: var(--primary-color);
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .nav-link:hover {
+            background-color: #002244;
+            border-color: var(--white);
+        }
+        
+        #app {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-intro {
+            background-color: var(--accent-color);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--primary-color);
+        }
+        
+        #namesInput {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            margin-bottom: 5px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        #namesInput:focus {
+            border-color: var(--primary-color);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 5px rgba(0,51,102,0.2);
+            outline: none;
+        }
+        
+        .help-text {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        #generateBtn {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #generateBtn:before {
+            content: '✨';
+        }
+        
+        #generateBtn:hover {
+            background-color: #006622;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        #generateBtn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        
+        #generateBtn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        #logArea {
+            margin-top: 25px;
+            padding: 15px;
+            height: 150px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow-y: auto;
+            background: #f9f9f9;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #444;
+        }
+        
+        #downloadContainer {
+            margin-top: 25px;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        #downloadLink {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        #downloadLink:before {
+            content: '📥';
+        }
+        
+        #downloadLink:hover {
+            background-color: #002244;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        #downloadLink:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        
+        #previewContainer {
+            margin-top: 25px;
+            overflow: auto;
+            max-height: 500px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+            display: none;
+            background: #f9f9f9;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        #previewContainer.visible {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        #previewCanvas {
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            #app {
+                padding: 20px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+            
+            #generateBtn, #downloadLink {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="logo.png" alt="Salvador Indigent Memorial Services Logo" class="logo">
+            </div>
+            <h1>Salvador Indigent Memorial Services</h1>
+            <p class="tagline">Helping families honor their loved ones with dignity</p>
+        </header>
+        
+        <div class="navigation">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="form.html" class="nav-link">Fill Up Form</a>
+            <a href="#" class="nav-link">Ribbon Generator</a>
+        </div>
+        
+        <div id="app">
+            <div class="form-intro">
+                <p>Create personalized ribbons for memorial services. Simply enter the names below (one per line), and generate a printable PDF containing beautifully formatted ribbons.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="namesInput">Enter Names:</label>
+                <textarea id="namesInput" placeholder="Enter names here, one per line. Example:
+Maria Santos
+Juan Dela Cruz
+Ana Reyes"></textarea>
+                <p class="help-text">Names will be formatted automatically in uppercase for readability.</p>
+            </div>
+            
+            <div class="button-container">
+                <button id="generateBtn">Generate Ribbons</button>
+            </div>
+            
+            <div id="logArea"></div>
+            
+            <div id="previewContainer">
+                <canvas id="previewCanvas"></canvas>
+            </div>
+            
+            <div id="downloadContainer">
+                <a id="downloadLink" href="#" download="salvador_ribbons.pdf">Download Ribbons PDF</a>
+            </div>
+        </div>
+        
+        <footer>
+            &copy; 2025 Salvador Indigent Memorial Services. All rights reserved.
+            <div>P-8 SINAYAWAN, VALENCIA CITY BUKIDNON</div>
+        </footer>
+    </div>
+
+    <script>
+        // Define the global variables
+        let ribbonTemplate = null;
+        let customFont = null;
+        const { jsPDF } = window.jspdf;
+        
+        // Constants (A4 size in mm)
+        const A4_WIDTH = 210;
+        const A4_HEIGHT = 297;
+        const RIBBONS_PER_ROW = 2;
+        const ROWS_PER_PAGE = 10;
+        const RIBBON_WIDTH = A4_WIDTH / RIBBONS_PER_ROW;
+        const RIBBON_HEIGHT = A4_HEIGHT / ROWS_PER_PAGE;
+        
+        // DOM Elements
+        const namesInput = document.getElementById('namesInput');
+        const generateBtn = document.getElementById('generateBtn');
+        const logArea = document.getElementById('logArea');
+        const downloadContainer = document.getElementById('downloadContainer');
+        const downloadLink = document.getElementById('downloadLink');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewCanvas = document.getElementById('previewCanvas');
+        
+        // Event Listeners
+        generateBtn.addEventListener('click', startGeneration);
+        
+        // Load template and font when page loads
+        window.addEventListener('load', function() {
+            // Load the ribbon template
+            loadTemplateImage();
+            
+            // Load the custom font
+            loadCustomFont();
+        });
+        
+        // Load template image from the predefined path
+        function loadTemplateImage() {
+            const img = new Image();
+            img.onload = function() {
+                ribbonTemplate = img;
+                log("✅ Ribbon template loaded successfully!");
+            };
+            img.onerror = function() {
+                log("❌ Error: Could not load ribbon_template.png. Make sure it's in the same folder as this HTML file.");
+            };
+            img.src = 'ribbon_template.png';
+        }
+        
+        // Load custom font from the predefined path
+        function loadCustomFont() {
+            const fontName = 'RitamSans';
+            const fontPath = 'SFT-Ritam-Sans-TRIAL-ExtraBold.ttf';
+            
+            // Use FontFace API if available
+            if (window.FontFace) {
+                const fontFace = new FontFace(fontName, `url('${fontPath}')`);
+                fontFace.load().then(function(loadedFace) {
+                    document.fonts.add(loadedFace);
+                    customFont = fontName;
+                    log("✅ Custom font loaded successfully!");
+                }).catch(function(error) {
+                    log("⚠️ Warning: Could not load custom font. Falling back to system fonts.");
+                });
+            } else {
+                // Fallback for browsers without FontFace API
+                const style = document.createElement('style');
+                style.textContent = `
+                    @font-face {
+                        font-family: '${fontName}';
+                        src: url('${fontPath}') format('truetype');
+                        font-weight: bold;
+                    }
+                `;
+                document.head.appendChild(style);
+                customFont = fontName;
+                log("✅ Custom font stylesheet added.");
+            }
+        }
+        
+        // Start generation process
+        function startGeneration() {
+            const namesText = namesInput.value.trim();
+            if (!namesText) {
+                log("❌ Error: Please enter some names.");
+                return;
+            }
+            
+            if (!ribbonTemplate) {
+                log("❌ Error: Ribbon template not loaded yet. Please wait or refresh the page.");
+                return;
+            }
+            
+            // Convert all names to uppercase and split into an array
+            const names = namesText.toUpperCase().split('\n')
+                .filter(name => name.trim() !== '');  // Filter out empty lines
+                
+            log(`📝 Processing ${names.length} names...`);
+            
+            // Disable the generate button while processing
+            generateBtn.disabled = true;
+            generateBtn.textContent = "Generating...";
+            
+            // Set up the A4 canvas
+            const ctx = previewCanvas.getContext('2d');
+            
+            // Set canvas size to A4 at 300 DPI
+            const dpi = 300;
+            const canvasWidth = Math.floor(A4_WIDTH * dpi / 25.4);
+            const canvasHeight = Math.floor(A4_HEIGHT * dpi / 25.4);
+            
+            previewCanvas.width = canvasWidth;
+            previewCanvas.height = canvasHeight;
+            previewCanvas.style.width = `${canvasWidth / 2}px`;
+            previewCanvas.style.height = `${canvasHeight / 2}px`;
+            
+            // Fill the canvas with white
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+            
+            // Calculate ribbon dimensions in pixels
+            const ribbonWidthPx = canvasWidth / RIBBONS_PER_ROW;
+            const ribbonHeightPx = canvasHeight / ROWS_PER_PAGE;
+            
+            // For each name, create a ribbon and place it on the canvas
+            names.slice(0, RIBBONS_PER_ROW * ROWS_PER_PAGE).forEach((name, index) => {
+                const col = index % RIBBONS_PER_ROW;
+                const row = Math.floor(index / RIBBONS_PER_ROW);
+                const x = col * ribbonWidthPx;
+                const y = row * ribbonHeightPx;
+                
+                // Create and draw the ribbon
+                createRibbonOnCanvas(ctx, name, x, y, ribbonWidthPx, ribbonHeightPx);
+            });
+            
+            log("✅ Ribbons generated successfully!");
+            
+            // Show preview
+            previewContainer.style.display = 'block';
+            previewContainer.classList.add('visible');
+            
+            // Create PDF
+            setTimeout(() => {
+                createPDF(previewCanvas);
+                // Re-enable the generate button
+                generateBtn.disabled = false;
+                generateBtn.textContent = "Generate Ribbons";
+            }, 500);
+        }
+        
+        // Create a ribbon on the canvas
+        function createRibbonOnCanvas(ctx, name, x, y, width, height) {
+            // Draw the ribbon template
+            ctx.drawImage(ribbonTemplate, x, y, width, height);
+            
+            // Set font properties
+            const fontName = customFont || 'Arial Black, Impact, sans-serif';
+            
+            // Start with a large font size and adjust downward
+            let fontSize = 100;
+            
+            while (true) {
+                ctx.font = `bold ${fontSize}px ${fontName}`;
+                const textMetrics = ctx.measureText(name);
+                
+                // Calculate text height (approximate)
+                const textHeight = fontSize * 1.2;
+                const textWidth = textMetrics.width;
+                
+                // Check if the text fits within the ribbon (50% of width, 100% of height)
+                if (textWidth <= width * 0.5 && textHeight <= height * 1) {
+                    break;
+                }
+                
+                fontSize -= 2;
+                
+                // If the font size gets too small, truncate the text
+                if (fontSize < 20) {
+                    name = name.substring(0, Math.floor(width / 10)) + "...";
+                    break;
+                }
+            }
+            
+            // Set the final font size
+            ctx.font = `bold ${fontSize}px ${fontName}`;
+            
+            // Center the text
+            const textMetrics = ctx.measureText(name);
+            const textWidth = textMetrics.width;
+            const textHeight = fontSize * 1.2;
+            
+            const textX = x + (width - textWidth) / 2;
+            const offset = 10;
+            const textY = y + (height - textHeight) / 3.5 + fontSize - offset;
+            
+            // Draw the text with slight shadow for better visibility
+            ctx.fillStyle = 'rgba(0,0,0,0.2)';
+            ctx.fillText(name, textX + 2, textY + 2);  // Shadow
+            
+            ctx.fillStyle = '#003366';  // Primary color
+            ctx.fillText(name, textX, textY);
+        }
+        
+        // Create PDF from canvas
+        function createPDF(canvas) {
+            // Create PDF at A4 size
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+            
+            // Add the canvas as an image to the PDF
+            const imgData = canvas.toDataURL('image/jpeg', 1.0);
+            pdf.addImage(imgData, 'JPEG', 0, 0, A4_WIDTH, A4_HEIGHT);
+            
+            // Create a blob URL for the PDF
+            const pdfBlob = pdf.output('blob');
+            const pdfUrl = URL.createObjectURL(pdfBlob);
+            
+            // Update the download link and show it
+            downloadLink.href = pdfUrl;
+            downloadContainer.style.display = 'block';
+            
+            log("✅ PDF created successfully! Click 'Download Ribbons PDF' to save it.");
+        }
+        
+        // Logger function
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            logArea.innerHTML += `[${timestamp}] ${message}\n`;
+            logArea.scrollTop = logArea.scrollHeight;
+        }
+        
+        // Initialize with some default text
+        log("🔄 Loading template and font files...");
+    </script>
+</body>
+</html>

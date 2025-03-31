@@ -20,13 +20,9 @@
             margin: 0;
         }
         
-        /* Mobile Styles - Will not show when printing */
+        /* Mobile Form */
         .mobile-form {
             display: block;
-        }
-        
-        .print-form {
-            display: none;
         }
         
         header {
@@ -55,19 +51,15 @@
             border: 2px solid white;
         }
         
-        .version-switch {
-            margin-top: 10px;
-        }
-        
         .switch-btn {
             display: inline-block;
-            background-color: #ffffff;
+            background-color: white;
             color: #003366;
-            padding: 8px 15px;
+            padding: 8px 12px;
+            margin-top: 8px;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
         }
         
         .container {
@@ -83,50 +75,6 @@
             margin-bottom: 15px;
             border-left: 4px solid #003366;
             font-size: 14px;
-            line-height: 1.4;
-        }
-        
-        .form-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-            padding: 12px;
-            border-radius: 6px;
-        }
-        
-        .paper-size {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .paper-size label {
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        
-        .paper-size select {
-            flex: 1;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        
-        button {
-            background-color: #003366;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 5px;
-        }
-        
-        button:hover {
-            background-color: #002244;
         }
         
         .form-section {
@@ -164,27 +112,15 @@
             font-size: 16px;
         }
         
-        .input-group input[type="text"]:focus {
-            border-color: #003366;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.1);
-        }
-        
         .checkbox-group {
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
             gap: 10px;
         }
         
         .checkbox-group input[type="checkbox"] {
             width: 20px;
             height: 20px;
-        }
-        
-        .checkbox-group input[type="text"] {
-            flex: 1;
-            min-width: 200px;
         }
         
         .two-columns {
@@ -210,7 +146,6 @@
             padding: 15px;
             border-radius: 4px;
             margin-bottom: 15px;
-            position: relative;
         }
         
         .add-button {
@@ -218,96 +153,146 @@
             background-color: #e0f0ff;
             color: #003366;
             border: 1px dashed #003366;
-        }
-        
-        .remove-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #ff4545;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border: none;
-            border-radius: 50%;
+            padding: 10px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-weight: bold;
+            margin-top: 10px;
         }
         
-        .form-actions.bottom {
-            margin-top: 30px;
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
+        .print-button {
+            width: 100%;
+            background-color: #00802b;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
         }
         
-        .form-actions.bottom button {
-            flex: 1;
-        }
-        
-        /* Mobile-specific adjustments */
+        /* Mobile responsiveness */
         @media (max-width: 600px) {
             .two-columns, .three-columns {
                 flex-direction: column;
                 gap: 10px;
             }
-            
-            .form-actions.bottom {
-                flex-direction: column;
+        }
+
+        /* PRINT STYLES - IMPORTANT FOR FIXING THE BLANK PRINT ISSUE */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white;
             }
             
-            .input-group input[type="text"] {
-                padding: 10px;
-                font-size: 14px;
+            .mobile-form, header, .form-intro, .add-button, .print-button {
+                display: none !important;
+            }
+            
+            .print-form {
+                display: block !important;
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+            
+            /* Print layout styles */
+            .print-layout {
+                display: flex;
+                width: 100%;
+                page-break-inside: avoid;
+            }
+            
+            .print-column {
+                width: 50%;
+                padding: 15px;
+                position: relative;
+            }
+            
+            .print-left {
+                border-right: 1px dashed #999;
+            }
+            
+            .print-header {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            
+            .print-header h2 {
+                color: #000;
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            
+            @page {
+                size: landscape;
+                margin: 0;
             }
         }
-        
+
         /* Print Form Styles */
+        .print-form {
+            display: none;
+        }
+        
         .print-layout {
             display: flex;
-            page-break-inside: avoid;
+            width: 100%;
         }
         
         .print-column {
             width: 50%;
-            padding: 10px;
-            position: relative;
+            padding: 15px;
+            font-size: 12px;
+            line-height: 1.3;
         }
         
-        .left-column {
+        .print-left {
             border-right: 1px dashed #999;
         }
         
         .print-header {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
-        .print-header h1 {
+        .print-header h2 {
             color: #003366;
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 5px;
         }
         
-        .print-logo-container {
-            margin-right: 10px;
+        .print-address {
+            font-size: 10px;
+            line-height: 1.2;
+            text-align: center;
+            color: #003366;
         }
         
         .print-company-info {
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 5px;
         }
         
-        .print-address {
-            font-size: 10px;
-            color: #003366;
-            line-height: 1.2;
-            text-align: center;
+        .print-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #003366;
+            margin-right: 10px;
         }
         
         .bank-title {
@@ -315,8 +300,8 @@
             font-size: 16px;
             font-style: italic;
             color: #003366;
-            margin: 10px 0;
             text-decoration: underline;
+            margin: 15px 0;
         }
         
         .features h3, .benefits h3, .inclusions h3 {
@@ -328,19 +313,22 @@
         .features ul {
             list-style-type: none;
             padding-left: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .features li {
+            font-size: 11px;
+            margin-bottom: 3px;
+            color: #003366;
         }
         
         .features li::before {
             content: "➤";
             color: #003366;
             font-weight: bold;
-            margin-right: 5px;
-        }
-        
-        .features li {
-            font-size: 11px;
-            margin-bottom: 2px;
-            color: #003366;
+            display: inline-block;
+            width: 15px;
+            margin-left: -15px;
         }
         
         .benefits p {
@@ -352,6 +340,7 @@
         
         .inclusions-columns {
             display: flex;
+            margin-bottom: 10px;
         }
         
         .inclusions-col {
@@ -361,14 +350,14 @@
         .inclusion {
             font-size: 11px;
             color: #003366;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
         
         .plans table {
             width: 100%;
             font-size: 10px;
             color: #003366;
-            border-collapse: collapse;
+            margin-bottom: 10px;
         }
         
         .price {
@@ -395,7 +384,7 @@
         }
         
         .client-field span:first-child {
-            min-width: 60px;
+            min-width: 70px;
         }
         
         .client-line {
@@ -405,18 +394,24 @@
             position: relative;
         }
         
+        .client-value {
+            position: absolute;
+            bottom: 2px;
+            left: 2px;
+        }
+        
         .slogan {
             text-align: center;
             font-size: 14px;
             color: #003366;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         
         .revision {
             position: absolute;
-            bottom: 5px;
-            left: 10px;
+            bottom: 10px;
+            left: 15px;
             font-size: 8px;
             color: #666;
         }
@@ -438,21 +433,29 @@
         
         .name-field {
             flex: 1;
-            text-align: center;
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
         
         .name-label {
-            font-size: 9px;
+            font-size: 10px;
             margin-bottom: 5px;
             color: #003366;
         }
         
         .name-value {
             border-bottom: 1px solid #003366;
+            width: 90%;
             height: 20px;
-            margin: 0 5px;
+            position: relative;
+        }
+        
+        .name-text {
+            position: absolute;
+            bottom: 2px;
+            left: 2px;
+            width: 100%;
         }
         
         .info-box {
@@ -463,15 +466,13 @@
         
         .info-field {
             display: flex;
-            align-items: center;
             margin-bottom: 5px;
             font-size: 10px;
             color: #003366;
         }
         
         .info-field span:first-child {
-            margin-right: 5px;
-            min-width: 60px;
+            min-width: 80px;
         }
         
         .info-line {
@@ -479,6 +480,12 @@
             border-bottom: 1px solid #003366;
             height: 15px;
             position: relative;
+        }
+        
+        .info-text {
+            position: absolute;
+            bottom: 2px;
+            left: 2px;
         }
         
         .info-row {
@@ -494,10 +501,11 @@
         }
         
         .info-third {
-            width: 33.33%;
+            width: 33%;
             display: flex;
             font-size: 10px;
             color: #003366;
+            margin-right: 1%;
         }
         
         .fb-circle {
@@ -505,52 +513,56 @@
             height: 10px;
             border: 1px solid #003366;
             border-radius: 50%;
+            display: inline-block;
             margin-right: 5px;
             position: relative;
         }
         
-        .fb-circle.checked::after {
+        .fb-circle.checked:after {
             content: "✓";
+            font-size: 7px;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 8px;
+            top: -1px;
+            left: 1px;
             color: #003366;
+        }
+        
+        .beneficiaries-section {
+            margin-bottom: 15px;
         }
         
         .beneficiaries-section h3 {
-            font-size: 12px;
             color: #003366;
+            font-size: 12px;
             margin-bottom: 5px;
         }
         
-        .beneficiaries-header {
+        .ben-header-row {
             display: flex;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
         
-        .ben-name-head {
+        .ben-header-name {
             width: 50%;
-            font-weight: bold;
             font-size: 11px;
             color: #003366;
+            font-weight: bold;
         }
         
-        .ben-age-head {
+        .ben-header-age {
             width: 20%;
             text-align: center;
-            font-weight: bold;
             font-size: 11px;
             color: #003366;
+            font-weight: bold;
         }
         
-        .ben-rel-head {
+        .ben-header-rel {
             width: 30%;
             text-align: right;
-            font-weight: bold;
             font-size: 11px;
             color: #003366;
+            font-weight: bold;
         }
         
         .ben-line {
@@ -559,28 +571,27 @@
             border-bottom: 1px solid #003366;
             margin-bottom: 10px;
             position: relative;
-            display: flex;
         }
         
-        .ben-name-print, .ben-age-print, .ben-rel-print {
+        .ben-name-text {
             position: absolute;
-            bottom: 5px;
-            font-size: 10px;
-        }
-        
-        .ben-name-print {
-            left: 5px;
+            bottom: 2px;
+            left: 2px;
             width: 50%;
         }
         
-        .ben-age-print {
+        .ben-age-text {
+            position: absolute;
+            bottom: 2px;
             left: 50%;
             width: 20%;
             text-align: center;
         }
         
-        .ben-rel-print {
-            right: 5px;
+        .ben-rel-text {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
             width: 30%;
             text-align: right;
         }
@@ -597,6 +608,13 @@
             border-bottom: 1px solid #003366;
             height: 20px;
             margin-bottom: 5px;
+            position: relative;
+        }
+        
+        .signature-text {
+            position: absolute;
+            bottom: 2px;
+            width: 100%;
             text-align: center;
         }
         
@@ -604,66 +622,22 @@
             font-size: 10px;
             color: #003366;
         }
-        
-        /* Print media styles */
-        @media print {
-            @page {
-                size: landscape;
-                margin: 0;
-            }
-            
-            body {
-                background: none;
-                padding: 0;
-                margin: 0;
-            }
-            
-            .mobile-form {
-                display: none !important;
-            }
-            
-            .print-form {
-                display: block !important;
-                width: 100%;
-                height: 100%;
-            }
-            
-            .print-layout {
-                width: 100%;
-                height: 100%;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Mobile Form - Only visible on screen -->
+    <!-- Mobile Form Interface - Only visible on screen -->
     <div class="mobile-form">
         <header>
             <div class="logo-container">
                 <img src="logo.png" alt="SIMS Logo" class="logo">
             </div>
             <h1>Salvador Indigent Memorial Services</h1>
-            <div class="version-switch">
-                <a href="desktop.html" class="switch-btn">Switch to Desktop Version</a>
-            </div>
+            <a href="desktop.html" class="switch-btn">Switch to Desktop Version</a>
         </header>
         
         <div class="container">
             <div class="form-intro">
-                <p>Please fill in all required information below. When finished, click "Print Form" or "Save as PDF" to get a professional-looking document.</p>
-            </div>
-
-            <div class="form-actions">
-                <div class="paper-size">
-                    <label for="paper-select">Paper Size:</label>
-                    <select id="paper-select">
-                        <option value="a4">A4 (210×297mm)</option>
-                        <option value="letter">Letter (8.5×11")</option>
-                        <option value="legal">Legal (8.5×14")</option>
-                    </select>
-                </div>
-                <button id="print-btn">Print Form</button>
-                <button id="pdf-btn">Save as PDF</button>
+                <p>Complete all information below. When finished, click "Print Form" to print your completed form.</p>
             </div>
             
             <!-- Client Information -->
@@ -852,25 +826,20 @@
                 </div>
             </section>
             
-            <!-- Bottom Form Actions -->
-            <div class="form-actions bottom">
-                <button id="print-btn-bottom">Print Form</button>
-                <button id="pdf-btn-bottom">Save as PDF</button>
-            </div>
+            <!-- Print Button -->
+            <button id="print-btn" class="print-button">Print Completed Form</button>
         </div>
     </div>
     
-    <!-- Print Form - Only visible when printing -->
-    <div class="print-form">
+    <!-- Printable Form - This will only be visible when printing -->
+    <div id="print-form" class="print-form">
         <div class="print-layout">
             <!-- Left Column -->
-            <div class="print-column left-column">
+            <div class="print-column print-left">
                 <div class="print-header">
-                    <h1>SALVADOR INDIGENT MEMORIAL SERVICES</h1>
+                    <h2>SALVADOR INDIGENT MEMORIAL SERVICES</h2>
                     <div class="print-company-info">
-                        <div class="print-logo-container">
-                            <img src="logo.png" alt="SIMS Logo" class="logo">
-                        </div>
+                        <img src="logo.png" alt="SIMS Logo" class="print-logo">
                         <div class="print-address">
                             P-8 SINAYAWAN, VALENCIA CITY BUKIDNON<br>
                             VALENCIA BRANCH: 09267921987/09674486610<br>
@@ -882,7 +851,7 @@
                     </div>
                 </div>
                 
-                <h2 class="bank-title">Semi-Banking System</h2>
+                <div class="bank-title">Semi-Banking System</div>
                 
                 <div class="features">
                     <h3>SPECIAL FEATURES:</h3>
@@ -949,15 +918,21 @@
                     <h4>CLIENT'S COPY</h4>
                     <div class="client-field">
                         <span>NAME:</span>
-                        <span class="client-line" id="print-client-name"></span>
+                        <span class="client-line">
+                            <span class="client-value" id="print-client-name"></span>
+                        </span>
                     </div>
                     <div class="client-field">
                         <span>ADDRESS:</span>
-                        <span class="client-line" id="print-client-address"></span>
+                        <span class="client-line">
+                            <span class="client-value" id="print-client-address"></span>
+                        </span>
                     </div>
                     <div class="client-field">
                         <span>CONTACT:</span>
-                        <span class="client-line" id="print-client-contact"></span>
+                        <span class="client-line">
+                            <span class="client-value" id="print-client-contact"></span>
+                        </span>
                     </div>
                     <div class="client-field">
                         <span>SIGNATURE:</span>
@@ -974,12 +949,12 @@
             </div>
             
             <!-- Right Column -->
-            <div class="print-column right-column">
+            <div class="print-column print-right">
                 <div class="print-header">
                     <div class="print-logo-container">
-                        <img src="logo.png" alt="SIMS Logo" class="logo">
+                        <img src="logo.png" alt="SIMS Logo" class="print-logo">
                     </div>
-                    <h1>SALVADOR INDIGENT MEMORIAL SERVICES</h1>
+                    <h2>SALVADOR INDIGENT MEMORIAL SERVICES</h2>
                     <div class="print-address">
                         P-8 SINAYAWAN, VALENCIA CITY BUKIDNON<br>
                         VALENCIA BRANCH: 09267921987/09674486610<br>
@@ -987,122 +962,147 @@
                     </div>
                 </div>
                 
-                <h2 class="membership-title">MEMBERSHIP DATA</h2>
+                <div class="membership-title">MEMBERSHIP DATA</div>
                 
                 <div class="name-box">
                     <div class="name-field">
                         <span class="name-label">LAST NAME</span>
-                        <span class="name-value" id="print-last-name"></span>
+                        <span class="name-value">
+                            <span class="name-text" id="print-last-name"></span>
+                        </span>
                     </div>
                     <div class="name-field">
                         <span class="name-label">FIRST NAME</span>
-                        <span class="name-value" id="print-first-name"></span>
+                        <span class="name-value">
+                            <span class="name-text" id="print-first-name"></span>
+                        </span>
                     </div>
                     <div class="name-field">
                         <span class="name-label">MIDDLE NAME</span>
-                        <span class="name-value" id="print-middle-name"></span>
+                        <span class="name-value">
+                            <span class="name-text" id="print-middle-name"></span>
+                        </span>
                     </div>
                 </div>
                 
                 <div class="info-box">
                     <div class="info-field">
                         <span>ADDRESS:</span>
-                        <span class="info-line" id="print-address"></span>
+                        <span class="info-line">
+                            <span class="info-text" id="print-address"></span>
+                        </span>
                     </div>
                     
                     <div class="info-row">
                         <div class="info-half">
                             <span>CONTACT:</span>
-                            <span class="info-line" id="print-contact"></span>
+                            <span class="info-line">
+                                <span class="info-text" id="print-contact"></span>
+                            </span>
                         </div>
                         <div class="info-half">
                             <span>CIVIL STATUS:</span>
-                            <span class="info-line" id="print-civil-status"></span>
+                            <span class="info-line">
+                                <span class="info-text" id="print-civil-status"></span>
+                            </span>
                         </div>
                     </div>
                     
                     <div class="info-row">
                         <div class="info-third">
                             <span>GENDER:</span>
-                            <span class="info-line" id="print-gender"></span>
+                            <span class="info-line">
+                                <span class="info-text" id="print-gender"></span>
+                            </span>
                         </div>
                         <div class="info-third">
                             <span>OCCUPATION:</span>
-                            <span class="info-line" id="print-occupation"></span>
+                            <span class="info-line">
+                                <span class="info-text" id="print-occupation"></span>
+                            </span>
                         </div>
                         <div class="info-third">
                             <span>AGE:</span>
-                            <span class="info-line" id="print-age"></span>
+                            <span class="info-line">
+                                <span class="info-text" id="print-age"></span>
+                            </span>
                         </div>
                     </div>
                     
                     <div class="info-row">
                         <div class="info-half">
                             <span>RELIGION:</span>
-                            <span class="info-line" id="print-religion"></span>
+                            <span class="info-line">
+                                <span class="info-text" id="print-religion"></span>
+                            </span>
                         </div>
                         <div class="info-half">
                             <span>DATE OF BIRTH:</span>
-                            <span class="info-line" id="print-birthdate"></span>
+                            <span class="info-line">
+                                <span class="info-text" id="print-birthdate"></span>
+                            </span>
                         </div>
                     </div>
                     
                     <div class="info-field">
-                        <span class="fb-circle" id="print-fb-circle"></span>
+                        <span id="fb-circle" class="fb-circle"></span>
                         <span>FACEBOOK ACCOUNT</span>
-                        <span class="info-line" id="print-facebook"></span>
+                        <span class="info-line">
+                            <span class="info-text" id="print-facebook"></span>
+                        </span>
                     </div>
                 </div>
                 
                 <div class="beneficiaries-section">
                     <h3>BENEFICIARIES:</h3>
-                    <div class="beneficiaries-header">
-                        <span class="ben-name-head">NAME</span>
-                        <span class="ben-age-head">AGE</span>
-                        <span class="ben-rel-head">RELATION</span>
+                    <div class="ben-header-row">
+                        <span class="ben-header-name">NAME</span>
+                        <span class="ben-header-age">AGE</span>
+                        <span class="ben-header-rel">RELATION</span>
                     </div>
                     
                     <div id="print-beneficiaries">
                         <div class="ben-line">
-                            <span class="ben-name-print"></span>
-                            <span class="ben-age-print"></span>
-                            <span class="ben-rel-print"></span>
+                            <span class="ben-name-text" id="print-ben-name-0"></span>
+                            <span class="ben-age-text" id="print-ben-age-0"></span>
+                            <span class="ben-rel-text" id="print-ben-rel-0"></span>
                         </div>
                         <div class="ben-line">
-                            <span class="ben-name-print"></span>
-                            <span class="ben-age-print"></span>
-                            <span class="ben-rel-print"></span>
+                            <span class="ben-name-text" id="print-ben-name-1"></span>
+                            <span class="ben-age-text" id="print-ben-age-1"></span>
+                            <span class="ben-rel-text" id="print-ben-rel-1"></span>
                         </div>
                         <div class="ben-line">
-                            <span class="ben-name-print"></span>
-                            <span class="ben-age-print"></span>
-                            <span class="ben-rel-print"></span>
+                            <span class="ben-name-text" id="print-ben-name-2"></span>
+                            <span class="ben-age-text" id="print-ben-age-2"></span>
+                            <span class="ben-rel-text" id="print-ben-rel-2"></span>
                         </div>
                         <div class="ben-line">
-                            <span class="ben-name-print"></span>
-                            <span class="ben-age-print"></span>
-                            <span class="ben-rel-print"></span>
+                            <span class="ben-name-text" id="print-ben-name-3"></span>
+                            <span class="ben-age-text" id="print-ben-age-3"></span>
+                            <span class="ben-rel-text" id="print-ben-rel-3"></span>
                         </div>
                         <div class="ben-line">
-                            <span class="ben-name-print"></span>
-                            <span class="ben-age-print"></span>
-                            <span class="ben-rel-print"></span>
+                            <span class="ben-name-text" id="print-ben-name-4"></span>
+                            <span class="ben-age-text" id="print-ben-age-4"></span>
+                            <span class="ben-rel-text" id="print-ben-rel-4"></span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="signature-section">
-                    <div class="signature-line" id="print-signature"></div>
+                    <div class="signature-line">
+                        <span class="signature-text" id="print-signature"></span>
+                    </div>
                     <div class="signature-label">PRINTED FULLNAME&SIGNATURE</div>
                 </div>
             </div>
         </div>
     </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Add beneficiary button
+            // Add beneficiary functionality
             document.getElementById('add-beneficiary').addEventListener('click', function() {
                 const container = document.getElementById('beneficiaries-container');
                 const entries = container.querySelectorAll('.beneficiary-entry');
@@ -1130,19 +1130,47 @@
                             <input type="text" class="ben-relation" data-index="${index}">
                         </div>
                     </div>
-                    <button type="button" class="remove-btn">&times;</button>
                 `;
                 
                 container.appendChild(newEntry);
                 
-                // Add remove button functionality
-                newEntry.querySelector('.remove-btn').addEventListener('click', function() {
-                    container.removeChild(newEntry);
-                });
+                // Add beneficiary entry to print form if needed
+                const printBeneficiaries = document.getElementById('print-beneficiaries');
+                if (index >= 5) { // Only add if beyond the initial 5
+                    const newLine = document.createElement('div');
+                    newLine.className = 'ben-line';
+                    newLine.innerHTML = `
+                        <span class="ben-name-text" id="print-ben-name-${index}"></span>
+                        <span class="ben-age-text" id="print-ben-age-${index}"></span>
+                        <span class="ben-rel-text" id="print-ben-rel-${index}"></span>
+                    `;
+                    printBeneficiaries.appendChild(newLine);
+                }
             });
             
-            // Print form preparation
-            function prepareForPrint() {
+            // Facebook checkbox functionality
+            document.getElementById('fb-account').addEventListener('change', function() {
+                if (this.checked) {
+                    document.getElementById('facebook').disabled = false;
+                } else {
+                    document.getElementById('facebook').value = '';
+                    document.getElementById('facebook').disabled = true;
+                }
+            });
+            
+            // Print button functionality - IMPORTANT FIX FOR PRINTING
+            document.getElementById('print-btn').addEventListener('click', function() {
+                // Update all print fields before printing
+                updatePrintForm();
+                
+                // Need a small delay to ensure values are updated before print dialog appears
+                setTimeout(function() {
+                    window.print();
+                }, 100);
+            });
+            
+            // Function to update print form values
+            function updatePrintForm() {
                 // Client information
                 document.getElementById('print-client-name').textContent = document.getElementById('client-name').value;
                 document.getElementById('print-client-address').textContent = document.getElementById('client-address').value;
@@ -1161,11 +1189,12 @@
                 document.getElementById('print-religion').textContent = document.getElementById('religion').value;
                 document.getElementById('print-birthdate').textContent = document.getElementById('birthdate').value;
                 
-                // Facebook account
+                // Facebook checkbox
+                const fbCircle = document.getElementById('fb-circle');
                 if (document.getElementById('fb-account').checked) {
-                    document.getElementById('print-fb-circle').classList.add('checked');
+                    fbCircle.classList.add('checked');
                 } else {
-                    document.getElementById('print-fb-circle').classList.remove('checked');
+                    fbCircle.classList.remove('checked');
                 }
                 document.getElementById('print-facebook').textContent = document.getElementById('facebook').value;
                 
@@ -1174,31 +1203,21 @@
                 const ageInputs = document.querySelectorAll('.ben-age');
                 const relationInputs = document.querySelectorAll('.ben-relation');
                 
-                const namePrints = document.querySelectorAll('.ben-name-print');
-                const agePrints = document.querySelectorAll('.ben-age-print');
-                const relationPrints = document.querySelectorAll('.ben-rel-print');
-                
-                // Transfer beneficiary data to print form
-                const maxEntries = Math.min(nameInputs.length, namePrints.length);
-                
-                for (let i = 0; i < maxEntries; i++) {
-                    namePrints[i].textContent = nameInputs[i].value;
-                    agePrints[i].textContent = ageInputs[i].value;
-                    relationPrints[i].textContent = relationInputs[i].value;
-                }
-                
-                // Add more beneficiary lines if necessary
-                if (nameInputs.length > namePrints.length) {
-                    const printBeneficiaries = document.getElementById('print-beneficiaries');
-                    for (let i = namePrints.length; i < nameInputs.length; i++) {
-                        const newLine = document.createElement('div');
-                        newLine.className = 'ben-line';
-                        newLine.innerHTML = `
-                            <span class="ben-name-print">${nameInputs[i].value}</span>
-                            <span class="ben-age-print">${ageInputs[i].value}</span>
-                            <span class="ben-rel-print">${relationInputs[i].value}</span>
-                        `;
-                        printBeneficiaries.appendChild(newLine);
+                for (let i = 0; i < nameInputs.length; i++) {
+                    const nameElement = document.getElementById(`print-ben-name-${i}`);
+                    const ageElement = document.getElementById(`print-ben-age-${i}`);
+                    const relElement = document.getElementById(`print-ben-rel-${i}`);
+                    
+                    if (nameElement && nameInputs[i]) {
+                        nameElement.textContent = nameInputs[i].value;
+                    }
+                    
+                    if (ageElement && ageInputs[i]) {
+                        ageElement.textContent = ageInputs[i].value;
+                    }
+                    
+                    if (relElement && relationInputs[i]) {
+                        relElement.textContent = relationInputs[i].value;
                     }
                 }
                 
@@ -1206,65 +1225,7 @@
                 document.getElementById('print-signature').textContent = document.getElementById('signature').value;
             }
             
-            // Print buttons
-            document.getElementById('print-btn').addEventListener('click', function() {
-                prepareForPrint();
-                window.print();
-            });
-            
-            document.getElementById('print-btn-bottom').addEventListener('click', function() {
-                prepareForPrint();
-                window.print();
-            });
-            
-            // PDF generation
-            document.getElementById('pdf-btn').addEventListener('click', function() {
-                prepareForPrint();
-                generatePDF();
-            });
-            
-            document.getElementById('pdf-btn-bottom').addEventListener('click', function() {
-                prepareForPrint();
-                generatePDF();
-            });
-            
-            function generatePDF() {
-                const paperSize = document.getElementById('paper-select').value;
-                
-                // Configure PDF dimensions based on selected paper size
-                let pdfConfig = {
-                    margin: 0,
-                    filename: 'salvador-memorial-services-form.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2 },
-                    jsPDF: { unit: 'mm', orientation: 'landscape' }
-                };
-                
-                // Set the format based on paper selection
-                if (paperSize === 'a4') {
-                    pdfConfig.jsPDF.format = 'a4';
-                } else if (paperSize === 'letter') {
-                    pdfConfig.jsPDF.format = 'letter';
-                } else if (paperSize === 'legal') {
-                    pdfConfig.jsPDF.format = [356, 216]; // Legal dimensions in mm
-                }
-                
-                // Generate PDF
-                html2pdf().set(pdfConfig).from(document.querySelector('.print-form')).save();
-            }
-            
-            // Initial setup - Facebook checkbox
-            document.getElementById('fb-account').addEventListener('change', function() {
-                const facebookField = document.getElementById('facebook');
-                if (this.checked) {
-                    facebookField.disabled = false;
-                } else {
-                    facebookField.value = '';
-                    facebookField.disabled = true;
-                }
-            });
-            
-            // Initialize
+            // Initialize - Disable Facebook input if checkbox is unchecked
             document.getElementById('facebook').disabled = !document.getElementById('fb-account').checked;
         });
     </script>

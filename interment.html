@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvador Indigent Memorial Services - Interment Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #003366;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+        }
+        
+        h1 {
+            color: #003366;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #003366;
+        }
+        
+        input[type="text"], 
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        input:focus {
+            border-color: #003366;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.1);
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 12px 15px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 140px;
+        }
+        
+        .btn-print {
+            background-color: #00802b;
+        }
+        
+        .btn-save {
+            background-color: #8e44ad;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+        
+        .nav-link {
+            color: #003366;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* A4 Paper dimensions - 210mm x 297mm */
+        #interment-preview {
+            width: 210mm;
+            height: 297mm;
+            background-color: white;
+            margin: 0 auto;
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Interment Form Styles - Exactly matching the image */
+        .print-form {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        
+        .sims-logo {
+            width: 120px;
+            height: 120px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .memory-text {
+            font-family: 'Homemade Apple', cursive;
+            font-size: 38px;
+            margin-bottom: 30px;
+        }
+        
+        .name-text {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 72px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .detail-text {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 48px;
+            font-weight: bold;
+            text-align: left;
+            width: 100%;
+            padding: 0 40px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .interment-line {
+            font-family: Arial, sans-serif;
+            font-size: 30px;
+            text-align: left;
+            width: 100%;
+            padding: 0 40px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .interment-line span {
+            display: inline-block;
+            border-bottom: 1px solid black;
+            flex: 1;
+            height: 2px;
+            position: relative;
+            margin-left: 10px;
+        }
+        
+        .interment-line-text {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+        }
+        
+        .service-line {
+            font-family: Arial, sans-serif;
+            font-size: 26px;
+            text-align: left;
+            width: 100%;
+            padding: 0 40px;
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+        
+        .salvador {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .indigent {
+            color: #2196f3;
+            font-weight: bold;
+        }
+        
+        .memorial {
+            color: #f44336;
+            font-weight: bold;
+        }
+        
+        .services {
+            color: #00bcd4;
+            font-weight: bold;
+        }
+        
+        .address-line {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            text-align: left;
+            width: 100%;
+            padding: 0 40px;
+            line-height: 1.5;
+        }
+        
+        /* Preview container for saved image */
+        #preview-container {
+            display: none;
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px dashed #ccc;
+            text-align: center;
+            background-color: white;
+            border-radius: 8px;
+        }
+        
+        #preview-container h3 {
+            margin-bottom: 15px;
+            color: #003366;
+        }
+        
+        #preview-image {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 1px solid #eee;
+        }
+        
+        #download-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #8e44ad;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        
+        #download-link:hover {
+            background-color: #7d3c98;
+            transform: translateY(-2px);
+        }
+        
+        /* Print styles - ensure only the form prints */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+            
+            body, html {
+                margin: 0;
+                padding: 0;
+                background: white;
+            }
+            
+            .container, .form-header, .form-group, .buttons, .nav-links, #preview-container {
+                display: none !important;
+            }
+            
+            #interment-preview {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                box-shadow: none;
+                overflow: visible;
+            }
+            
+            .print-form {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <div class="logo-container">
+                <img src="logo.png" alt="Salvador Indigent Memorial Services Logo" class="logo">
+            </div>
+            <h1>Salvador Indigent Memorial Services - Interment Form</h1>
+        </div>
+        
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter full name of the deceased">
+        </div>
+        
+        <div class="form-group">
+            <label for="born">Born Date</label>
+            <input type="text" id="born" name="born" placeholder="e.g., January 1, 1950">
+        </div>
+        
+        <div class="form-group">
+            <label for="died">Died Date</label>
+            <input type="text" id="died" name="died" placeholder="e.g., January 1, 2025">
+        </div>
+        
+        <div class="form-group">
+            <label for="age">Age (in years)</label>
+            <input type="number" id="age" name="age" placeholder="Enter age">
+        </div>
+
+        <div class="form-group">
+            <label for="interment-date">Date of Interment</label>
+            <input type="text" id="interment-date" name="interment-date" placeholder="Enter interment date">
+        </div>
+        
+        <div class="form-group">
+            <label for="placed">Placed</label>
+            <input type="text" id="placed" name="placed" placeholder="Enter where placed">
+        </div>
+        
+        <div class="buttons">
+            <button type="button" id="update-btn" class="btn">Update Preview</button>
+            <button type="button" id="print-btn" class="btn btn-print">Print Form</button>
+            <button type="button" id="save-btn" class="btn btn-save">Save as PNG</button>
+        </div>
+        
+        <div id="preview-container">
+            <h3>Your interment form is ready to download</h3>
+            <img id="preview-image" src="" alt="Interment Form Preview">
+            <a id="download-link" href="#" download="interment_form.png">Download PNG</a>
+        </div>
+        
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="form.html" class="nav-link">Fill Up Form</a>
+            <a href="ribbon.html" class="nav-link">Ribbon Generator</a>
+        </div>
+    </div>
+    
+    <!-- A4 sized interment form preview -->
+    <div id="interment-preview">
+        <div class="print-form">
+            <img src="logo.png" alt="SIMS Logo" class="sims-logo">
+            
+            <div class="memory-text">In loving memory of</div>
+            
+            <div class="name-text" id="preview-name">NAME</div>
+            
+            <div class="detail-text" id="preview-born">BORN: &lt;&lt;BORNDATE&gt;</div>
+            <div class="detail-text" id="preview-died">DIED: &lt;&lt;DEATHDATE&gt;&gt;</div>
+            <div class="detail-text" id="preview-age">AGE: &lt;&lt;AGE&gt;&gt; YRS. OLD</div>
+            
+            <div class="interment-line">
+                DATE OF INTERMENT:
+                <span>
+                    <div class="interment-line-text" id="preview-interment-date"></div>
+                </span>
+            </div>
+            
+            <div class="interment-line">
+                PLACED:
+                <span>
+                    <div class="interment-line-text" id="preview-placed"></div>
+                </span>
+            </div>
+            
+            <div class="service-line">
+                SERVICED BY: <span class="salvador">SALVADOR</span> <span class="indigent">INDIGENT</span> <span class="memorial">MEMORIAL</span> <span class="services">SERVICES</span>
+            </div>
+            
+            <div class="address-line">
+                OFFICE ADDRESS: P-8 SINAYAWAN, VALENCIA CITY BUK.<br>
+                NO. 09267921987-09674486610
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameInput = document.getElementById('name');
+            const bornInput = document.getElementById('born');
+            const diedInput = document.getElementById('died');
+            const ageInput = document.getElementById('age');
+            const intermentDateInput = document.getElementById('interment-date');
+            const placedInput = document.getElementById('placed');
+            
+            const previewName = document.getElementById('preview-name');
+            const previewBorn = document.getElementById('preview-born');
+            const previewDied = document.getElementById('preview-died');
+            const previewAge = document.getElementById('preview-age');
+            const previewIntermentDate = document.getElementById('preview-interment-date');
+            const previewPlaced = document.getElementById('preview-placed');
+            
+            const updateBtn = document.getElementById('update-btn');
+            const printBtn = document.getElementById('print-btn');
+            const saveBtn = document.getElementById('save-btn');
+            const previewContainer = document.getElementById('preview-container');
+            const previewImage = document.getElementById('preview-image');
+            const downloadLink = document.getElementById('download-link');
+            
+            // Update preview when button clicked
+            updateBtn.addEventListener('click', function() {
+                updatePreview();
+            });
+            
+            // Print form
+            printBtn.addEventListener('click', function() {
+                updatePreview();
+                setTimeout(() => {
+                    window.print();
+                }, 300);
+            });
+            
+            // Save as PNG
+            saveBtn.addEventListener('click', function() {
+                updatePreview();
+                
+                // Hide preview container while generating image
+                previewContainer.style.display = 'none';
+                
+                // Use html2canvas to create PNG
+                html2canvas(document.getElementById('interment-preview'), {
+                    scale: 2, // Higher quality
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: "#FFFFFF"
+                }).then(function(canvas) {
+                    // Convert to data URL
+                    const imgData = canvas.toDataURL('image/png');
+                    
+                    // Update image and download link
+                    previewImage.src = imgData;
+                    downloadLink.href = imgData;
+                    
+                    // Show preview container
+                    previewContainer.style.display = 'block';
+                    
+                    // Scroll to the preview
+                    previewContainer.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // Update preview with form data
+            function updatePreview() {
+                previewName.textContent = nameInput.value.toUpperCase() || 'NAME';
+                previewBorn.textContent = `BORN: ${bornInput.value || '<<BORNDATE>>'}`;
+                previewDied.textContent = `DIED: ${diedInput.value || '<<DEATHDATE>>'}`;
+                previewAge.textContent = `AGE: ${ageInput.value || '<<AGE>>'} YRS. OLD`;
+                previewIntermentDate.textContent = intermentDateInput.value;
+                previewPlaced.textContent = placedInput.value;
+            }
+            
+            // Live preview updates as user types
+            nameInput.addEventListener('input', function() {
+                previewName.textContent = this.value.toUpperCase() || 'NAME';
+            });
+            
+            bornInput.addEventListener('input', function() {
+                previewBorn.textContent = `BORN: ${this.value || '<<BORNDATE>>'}`;
+            });
+            
+            diedInput.addEventListener('input', function() {
+                previewDied.textContent = `DIED: ${this.value || '<<DEATHDATE>>'}`;
+            });
+            
+            ageInput.addEventListener('input', function() {
+                previewAge.textContent = `AGE: ${this.value || '<<AGE>>'} YRS. OLD`;
+            });
+            
+            intermentDateInput.addEventListener('input', function() {
+                previewIntermentDate.textContent = this.value;
+            });
+            
+            placedInput.addEventListener('input', function() {
+                previewPlaced.textContent = this.value;
+            });
+        });
+    </script>
+</body>
+</html>
