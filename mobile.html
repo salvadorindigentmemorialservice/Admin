@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvador Indigent Memorial Services - Mobile Form</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Mobile Styles - Will not show when printing */
+        .mobile-form {
+            display: block;
+        }
+        
+        .print-form {
+            display: none;
+        }
+        
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        header h1 {
+            font-size: 22px;
+            margin: 10px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .version-switch {
+            margin-top: 10px;
+        }
+        
+        .switch-btn {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #003366;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .container {
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-intro {
+            background-color: #e0f0ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #003366;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .form-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 6px;
+        }
+        
+        .paper-size {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .paper-size label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .paper-size select {
+            flex: 1;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+        
+        button:hover {
+            background-color: #002244;
+        }
+        
+        .form-section {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .form-section h2 {
+            color: #003366;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            font-size: 18px;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .input-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .input-group input[type="text"]:focus {
+            border-color: #003366;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.1);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .checkbox-group input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .two-columns {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .two-columns .input-group {
+            flex: 1;
+        }
+        
+        .three-columns {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .three-columns .input-group {
+            flex: 1;
+        }
+        
+        .beneficiary-entry {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .add-button {
+            width: 100%;
+            background-color: #e0f0ff;
+            color: #003366;
+            border: 1px dashed #003366;
+        }
+        
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4545;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .form-actions.bottom {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+        
+        .form-actions.bottom button {
+            flex: 1;
+        }
+        
+        /* Mobile-specific adjustments */
+        @media (max-width: 600px) {
+            .two-columns, .three-columns {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .form-actions.bottom {
+                flex-direction: column;
+            }
+            
+            .input-group input[type="text"] {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Print Form Styles */
+        .print-layout {
+            display: flex;
+            page-break-inside: avoid;
+        }
+        
+        .print-column {
+            width: 50%;
+            padding: 10px;
+            position: relative;
+        }
+        
+        .left-column {
+            border-right: 1px dashed #999;
+        }
+        
+        .print-header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .print-header h1 {
+            color: #003366;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .print-logo-container {
+            margin-right: 10px;
+        }
+        
+        .print-company-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .print-address {
+            font-size: 10px;
+            color: #003366;
+            line-height: 1.2;
+            text-align: center;
+        }
+        
+        .bank-title {
+            text-align: center;
+            font-size: 16px;
+            font-style: italic;
+            color: #003366;
+            margin: 10px 0;
+            text-decoration: underline;
+        }
+        
+        .features h3, .benefits h3, .inclusions h3 {
+            color: #003366;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        
+        .features ul {
+            list-style-type: none;
+            padding-left: 15px;
+        }
+        
+        .features li::before {
+            content: "➤";
+            color: #003366;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .features li {
+            font-size: 11px;
+            margin-bottom: 2px;
+            color: #003366;
+        }
+        
+        .benefits p {
+            font-size: 11px;
+            font-style: italic;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+        
+        .inclusions-columns {
+            display: flex;
+        }
+        
+        .inclusions-col {
+            flex: 1;
+        }
+        
+        .inclusion {
+            font-size: 11px;
+            color: #003366;
+            margin-bottom: 2px;
+        }
+        
+        .plans table {
+            width: 100%;
+            font-size: 10px;
+            color: #003366;
+            border-collapse: collapse;
+        }
+        
+        .price {
+            text-align: right;
+        }
+        
+        .client-box {
+            border: 1px solid #003366;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .client-box h4 {
+            font-size: 11px;
+            margin-bottom: 5px;
+            color: #003366;
+        }
+        
+        .client-field {
+            display: flex;
+            margin-bottom: 5px;
+            font-size: 11px;
+            color: #003366;
+        }
+        
+        .client-field span:first-child {
+            min-width: 60px;
+        }
+        
+        .client-line {
+            flex: 1;
+            border-bottom: 1px solid #003366;
+            height: 15px;
+            position: relative;
+        }
+        
+        .slogan {
+            text-align: center;
+            font-size: 14px;
+            color: #003366;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .revision {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            font-size: 8px;
+            color: #666;
+        }
+        
+        .membership-title {
+            text-align: center;
+            font-size: 14px;
+            color: #003366;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .name-box {
+            display: flex;
+            border: 1px solid #003366;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .name-field {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .name-label {
+            font-size: 9px;
+            margin-bottom: 5px;
+            color: #003366;
+        }
+        
+        .name-value {
+            border-bottom: 1px solid #003366;
+            height: 20px;
+            margin: 0 5px;
+        }
+        
+        .info-box {
+            border: 1px solid #003366;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .info-field {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: 10px;
+            color: #003366;
+        }
+        
+        .info-field span:first-child {
+            margin-right: 5px;
+            min-width: 60px;
+        }
+        
+        .info-line {
+            flex: 1;
+            border-bottom: 1px solid #003366;
+            height: 15px;
+            position: relative;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 5px;
+        }
+        
+        .info-half {
+            width: 50%;
+            display: flex;
+            font-size: 10px;
+            color: #003366;
+        }
+        
+        .info-third {
+            width: 33.33%;
+            display: flex;
+            font-size: 10px;
+            color: #003366;
+        }
+        
+        .fb-circle {
+            width: 10px;
+            height: 10px;
+            border: 1px solid #003366;
+            border-radius: 50%;
+            margin-right: 5px;
+            position: relative;
+        }
+        
+        .fb-circle.checked::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8px;
+            color: #003366;
+        }
+        
+        .beneficiaries-section h3 {
+            font-size: 12px;
+            color: #003366;
+            margin-bottom: 5px;
+        }
+        
+        .beneficiaries-header {
+            display: flex;
+            margin-bottom: 5px;
+        }
+        
+        .ben-name-head {
+            width: 50%;
+            font-weight: bold;
+            font-size: 11px;
+            color: #003366;
+        }
+        
+        .ben-age-head {
+            width: 20%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 11px;
+            color: #003366;
+        }
+        
+        .ben-rel-head {
+            width: 30%;
+            text-align: right;
+            font-weight: bold;
+            font-size: 11px;
+            color: #003366;
+        }
+        
+        .ben-line {
+            width: 100%;
+            height: 25px;
+            border-bottom: 1px solid #003366;
+            margin-bottom: 10px;
+            position: relative;
+            display: flex;
+        }
+        
+        .ben-name-print, .ben-age-print, .ben-rel-print {
+            position: absolute;
+            bottom: 5px;
+            font-size: 10px;
+        }
+        
+        .ben-name-print {
+            left: 5px;
+            width: 50%;
+        }
+        
+        .ben-age-print {
+            left: 50%;
+            width: 20%;
+            text-align: center;
+        }
+        
+        .ben-rel-print {
+            right: 5px;
+            width: 30%;
+            text-align: right;
+        }
+        
+        .signature-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .signature-line {
+            width: 80%;
+            border-bottom: 1px solid #003366;
+            height: 20px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        
+        .signature-label {
+            font-size: 10px;
+            color: #003366;
+        }
+        
+        /* Print media styles */
+        @media print {
+            @page {
+                size: landscape;
+                margin: 0;
+            }
+            
+            body {
+                background: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .mobile-form {
+                display: none !important;
+            }
+            
+            .print-form {
+                display: block !important;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .print-layout {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Form - Only visible on screen -->
+    <div class="mobile-form">
+        <header>
+            <div class="logo-container">
+                <img src="logo.png" alt="SIMS Logo" class="logo">
+            </div>
+            <h1>Salvador Indigent Memorial Services</h1>
+            <div class="version-switch">
+                <a href="desktop.html" class="switch-btn">Switch to Desktop Version</a>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div class="form-intro">
+                <p>Please fill in all required information below. When finished, click "Print Form" or "Save as PDF" to get a professional-looking document.</p>
+            </div>
+
+            <div class="form-actions">
+                <div class="paper-size">
+                    <label for="paper-select">Paper Size:</label>
+                    <select id="paper-select">
+                        <option value="a4">A4 (210×297mm)</option>
+                        <option value="letter">Letter (8.5×11")</option>
+                        <option value="legal">Legal (8.5×14")</option>
+                    </select>
+                </div>
+                <button id="print-btn">Print Form</button>
+                <button id="pdf-btn">Save as PDF</button>
+            </div>
+            
+            <!-- Client Information -->
+            <section class="form-section">
+                <h2>Client Information</h2>
+                <div class="input-group">
+                    <label for="client-name">Name</label>
+                    <input type="text" id="client-name" name="client-name">
+                </div>
+                <div class="input-group">
+                    <label for="client-address">Address</label>
+                    <input type="text" id="client-address" name="client-address">
+                </div>
+                <div class="input-group">
+                    <label for="client-contact">Contact</label>
+                    <input type="text" id="client-contact" name="client-contact">
+                </div>
+            </section>
+            
+            <!-- Member Information -->
+            <section class="form-section">
+                <h2>Membership Data</h2>
+                
+                <div class="input-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name">
+                </div>
+                <div class="input-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name">
+                </div>
+                <div class="input-group">
+                    <label for="middle-name">Middle Name</label>
+                    <input type="text" id="middle-name" name="middle-name">
+                </div>
+                
+                <div class="input-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address">
+                </div>
+                
+                <div class="two-columns">
+                    <div class="input-group">
+                        <label for="contact">Contact</label>
+                        <input type="text" id="contact" name="contact">
+                    </div>
+                    <div class="input-group">
+                        <label for="civil-status">Civil Status</label>
+                        <input type="text" id="civil-status" name="civil-status">
+                    </div>
+                </div>
+                
+                <div class="three-columns">
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+                        <input type="text" id="gender" name="gender">
+                    </div>
+                    <div class="input-group">
+                        <label for="occupation">Occupation</label>
+                        <input type="text" id="occupation" name="occupation">
+                    </div>
+                    <div class="input-group">
+                        <label for="age">Age</label>
+                        <input type="text" id="age" name="age">
+                    </div>
+                </div>
+                
+                <div class="two-columns">
+                    <div class="input-group">
+                        <label for="religion">Religion</label>
+                        <input type="text" id="religion" name="religion">
+                    </div>
+                    <div class="input-group">
+                        <label for="birthdate">Date of Birth</label>
+                        <input type="text" id="birthdate" name="birthdate">
+                    </div>
+                </div>
+                
+                <div class="input-group checkbox-group">
+                    <input type="checkbox" id="fb-account" name="fb-account">
+                    <label for="fb-account">Facebook Account</label>
+                    <input type="text" id="facebook" name="facebook">
+                </div>
+            </section>
+            
+            <!-- Beneficiaries -->
+            <section class="form-section">
+                <h2>Beneficiaries</h2>
+                
+                <div id="beneficiaries-container">
+                    <div class="beneficiary-entry">
+                        <div class="input-group">
+                            <label>Name:</label>
+                            <input type="text" class="ben-name" data-index="0">
+                        </div>
+                        <div class="two-columns">
+                            <div class="input-group">
+                                <label>Age:</label>
+                                <input type="text" class="ben-age" data-index="0">
+                            </div>
+                            <div class="input-group">
+                                <label>Relation:</label>
+                                <input type="text" class="ben-relation" data-index="0">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="beneficiary-entry">
+                        <div class="input-group">
+                            <label>Name:</label>
+                            <input type="text" class="ben-name" data-index="1">
+                        </div>
+                        <div class="two-columns">
+                            <div class="input-group">
+                                <label>Age:</label>
+                                <input type="text" class="ben-age" data-index="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Relation:</label>
+                                <input type="text" class="ben-relation" data-index="1">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="beneficiary-entry">
+                        <div class="input-group">
+                            <label>Name:</label>
+                            <input type="text" class="ben-name" data-index="2">
+                        </div>
+                        <div class="two-columns">
+                            <div class="input-group">
+                                <label>Age:</label>
+                                <input type="text" class="ben-age" data-index="2">
+                            </div>
+                            <div class="input-group">
+                                <label>Relation:</label>
+                                <input type="text" class="ben-relation" data-index="2">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="beneficiary-entry">
+                        <div class="input-group">
+                            <label>Name:</label>
+                            <input type="text" class="ben-name" data-index="3">
+                        </div>
+                        <div class="two-columns">
+                            <div class="input-group">
+                                <label>Age:</label>
+                                <input type="text" class="ben-age" data-index="3">
+                            </div>
+                            <div class="input-group">
+                                <label>Relation:</label>
+                                <input type="text" class="ben-relation" data-index="3">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="beneficiary-entry">
+                        <div class="input-group">
+                            <label>Name:</label>
+                            <input type="text" class="ben-name" data-index="4">
+                        </div>
+                        <div class="two-columns">
+                            <div class="input-group">
+                                <label>Age:</label>
+                                <input type="text" class="ben-age" data-index="4">
+                            </div>
+                            <div class="input-group">
+                                <label>Relation:</label>
+                                <input type="text" class="ben-relation" data-index="4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" id="add-beneficiary" class="add-button">+ Add Another Beneficiary</button>
+            </section>
+            
+            <!-- Signature -->
+            <section class="form-section">
+                <h2>Signature</h2>
+                <div class="input-group">
+                    <label for="signature">Printed Fullname & Signature</label>
+                    <input type="text" id="signature" name="signature">
+                </div>
+            </section>
+            
+            <!-- Bottom Form Actions -->
+            <div class="form-actions bottom">
+                <button id="print-btn-bottom">Print Form</button>
+                <button id="pdf-btn-bottom">Save as PDF</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Print Form - Only visible when printing -->
+    <div class="print-form">
+        <div class="print-layout">
+            <!-- Left Column -->
+            <div class="print-column left-column">
+                <div class="print-header">
+                    <h1>SALVADOR INDIGENT MEMORIAL SERVICES</h1>
+                    <div class="print-company-info">
+                        <div class="print-logo-container">
+                            <img src="logo.png" alt="SIMS Logo" class="logo">
+                        </div>
+                        <div class="print-address">
+                            P-8 SINAYAWAN, VALENCIA CITY BUKIDNON<br>
+                            VALENCIA BRANCH: 09267921987/09674486610<br>
+                            CDO BRANCH: 09063686674/09972118182<br>
+                            TIN:776-384-273-000<br>
+                            GCASH: 09267921987<br>
+                            ELENA P. SALVADOR
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="bank-title">Semi-Banking System</h2>
+                
+                <div class="features">
+                    <h3>SPECIAL FEATURES:</h3>
+                    <ul>
+                        <li>TRANSFERABLE: you may transfer to any living person.</li>
+                        <li>ASSIGNABLE: you may assign any deceased person.</li>
+                        <li>LOANABLE: after fully paid.</li>
+                        <li>WITHDRAWABLE: after 10 years fully paid.</li>
+                        <li>NO AGE LIMITS.</li>
+                        <li>No medical examination required.</li>
+                        <li>Money back 20 years after fully paid.</li>
+                    </ul>
+                </div>
+                
+                <div class="benefits">
+                    <h3>SPECIAL BENEFITS</h3>
+                    <p>Accidental Death - No pay the balance with free memorial packages.</p>
+                </div>
+                
+                <div class="inclusions">
+                    <h3>MEMORIAL SERVICE INCLUSIONS</h3>
+                    <div class="inclusions-columns">
+                        <div class="inclusions-col">
+                            <div class="inclusion">✓ CASKET</div>
+                            <div class="inclusion">✓ EMBALMING</div>
+                            <div class="inclusion">✓ LAPIDA</div>
+                            <div class="inclusion">✓ CASKET DECORATION</div>
+                        </div>
+                        <div class="inclusions-col">
+                            <div class="inclusion">✓ TRIBUTE/BALIK-LANTAW</div>
+                            <div class="inclusion">✓ FILM VIEWING</div>
+                            <div class="inclusion">✓ PICTURE WITH FRAME</div>
+                            <div class="inclusion">✓ TARPAULINE</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="plans">
+                    <table>
+                        <tr>
+                            <td>ORQUIDS PLAN</td>
+                            <td>HALF GLASS WOOD CASKET</td>
+                            <td class="price">₱ 35,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>SUNFLOWER PLAN</td>
+                            <td>FULL GLASS WOOD CASKET DOUBLEDOOR</td>
+                            <td class="price">₱ 45,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>ANTHURIUM PLAN</td>
+                            <td>FULL GLASS METAL CASKET DOUBLEDOOR</td>
+                            <td class="price">₱ 60,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>SAMPAGUITA PLAN</td>
+                            <td>FULL GLASS METAL CASKET STANDARD SIZE</td>
+                            <td class="price">₱ 110,000.00</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="client-box">
+                    <h4>CLIENT'S COPY</h4>
+                    <div class="client-field">
+                        <span>NAME:</span>
+                        <span class="client-line" id="print-client-name"></span>
+                    </div>
+                    <div class="client-field">
+                        <span>ADDRESS:</span>
+                        <span class="client-line" id="print-client-address"></span>
+                    </div>
+                    <div class="client-field">
+                        <span>CONTACT:</span>
+                        <span class="client-line" id="print-client-contact"></span>
+                    </div>
+                    <div class="client-field">
+                        <span>SIGNATURE:</span>
+                        <span class="client-line"></span>
+                    </div>
+                </div>
+                
+                <div class="slogan">
+                    <p>"MONEY" MANIGURO mag SIMS tayo!</p>
+                    <p>SERBISYONG TOTOO.</p>
+                </div>
+                
+                <div class="revision">REVISED 01/18/2025</div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="print-column right-column">
+                <div class="print-header">
+                    <div class="print-logo-container">
+                        <img src="logo.png" alt="SIMS Logo" class="logo">
+                    </div>
+                    <h1>SALVADOR INDIGENT MEMORIAL SERVICES</h1>
+                    <div class="print-address">
+                        P-8 SINAYAWAN, VALENCIA CITY BUKIDNON<br>
+                        VALENCIA BRANCH: 09267921987/09674486610<br>
+                        CDO BRANCH: 09063686674/09972118182
+                    </div>
+                </div>
+                
+                <h2 class="membership-title">MEMBERSHIP DATA</h2>
+                
+                <div class="name-box">
+                    <div class="name-field">
+                        <span class="name-label">LAST NAME</span>
+                        <span class="name-value" id="print-last-name"></span>
+                    </div>
+                    <div class="name-field">
+                        <span class="name-label">FIRST NAME</span>
+                        <span class="name-value" id="print-first-name"></span>
+                    </div>
+                    <div class="name-field">
+                        <span class="name-label">MIDDLE NAME</span>
+                        <span class="name-value" id="print-middle-name"></span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <div class="info-field">
+                        <span>ADDRESS:</span>
+                        <span class="info-line" id="print-address"></span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-half">
+                            <span>CONTACT:</span>
+                            <span class="info-line" id="print-contact"></span>
+                        </div>
+                        <div class="info-half">
+                            <span>CIVIL STATUS:</span>
+                            <span class="info-line" id="print-civil-status"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-third">
+                            <span>GENDER:</span>
+                            <span class="info-line" id="print-gender"></span>
+                        </div>
+                        <div class="info-third">
+                            <span>OCCUPATION:</span>
+                            <span class="info-line" id="print-occupation"></span>
+                        </div>
+                        <div class="info-third">
+                            <span>AGE:</span>
+                            <span class="info-line" id="print-age"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-half">
+                            <span>RELIGION:</span>
+                            <span class="info-line" id="print-religion"></span>
+                        </div>
+                        <div class="info-half">
+                            <span>DATE OF BIRTH:</span>
+                            <span class="info-line" id="print-birthdate"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-field">
+                        <span class="fb-circle" id="print-fb-circle"></span>
+                        <span>FACEBOOK ACCOUNT</span>
+                        <span class="info-line" id="print-facebook"></span>
+                    </div>
+                </div>
+                
+                <div class="beneficiaries-section">
+                    <h3>BENEFICIARIES:</h3>
+                    <div class="beneficiaries-header">
+                        <span class="ben-name-head">NAME</span>
+                        <span class="ben-age-head">AGE</span>
+                        <span class="ben-rel-head">RELATION</span>
+                    </div>
+                    
+                    <div id="print-beneficiaries">
+                        <div class="ben-line">
+                            <span class="ben-name-print"></span>
+                            <span class="ben-age-print"></span>
+                            <span class="ben-rel-print"></span>
+                        </div>
+                        <div class="ben-line">
+                            <span class="ben-name-print"></span>
+                            <span class="ben-age-print"></span>
+                            <span class="ben-rel-print"></span>
+                        </div>
+                        <div class="ben-line">
+                            <span class="ben-name-print"></span>
+                            <span class="ben-age-print"></span>
+                            <span class="ben-rel-print"></span>
+                        </div>
+                        <div class="ben-line">
+                            <span class="ben-name-print"></span>
+                            <span class="ben-age-print"></span>
+                            <span class="ben-rel-print"></span>
+                        </div>
+                        <div class="ben-line">
+                            <span class="ben-name-print"></span>
+                            <span class="ben-age-print"></span>
+                            <span class="ben-rel-print"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="signature-section">
+                    <div class="signature-line" id="print-signature"></div>
+                    <div class="signature-label">PRINTED FULLNAME&SIGNATURE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add beneficiary button
+            document.getElementById('add-beneficiary').addEventListener('click', function() {
+                const container = document.getElementById('beneficiaries-container');
+                const entries = container.querySelectorAll('.beneficiary-entry');
+                const index = entries.length;
+                
+                if (index >= 10) {
+                    alert('Maximum number of beneficiaries reached.');
+                    return;
+                }
+                
+                const newEntry = document.createElement('div');
+                newEntry.className = 'beneficiary-entry';
+                newEntry.innerHTML = `
+                    <div class="input-group">
+                        <label>Name:</label>
+                        <input type="text" class="ben-name" data-index="${index}">
+                    </div>
+                    <div class="two-columns">
+                        <div class="input-group">
+                            <label>Age:</label>
+                            <input type="text" class="ben-age" data-index="${index}">
+                        </div>
+                        <div class="input-group">
+                            <label>Relation:</label>
+                            <input type="text" class="ben-relation" data-index="${index}">
+                        </div>
+                    </div>
+                    <button type="button" class="remove-btn">&times;</button>
+                `;
+                
+                container.appendChild(newEntry);
+                
+                // Add remove button functionality
+                newEntry.querySelector('.remove-btn').addEventListener('click', function() {
+                    container.removeChild(newEntry);
+                });
+            });
+            
+            // Print form preparation
+            function prepareForPrint() {
+                // Client information
+                document.getElementById('print-client-name').textContent = document.getElementById('client-name').value;
+                document.getElementById('print-client-address').textContent = document.getElementById('client-address').value;
+                document.getElementById('print-client-contact').textContent = document.getElementById('client-contact').value;
+                
+                // Membership data
+                document.getElementById('print-last-name').textContent = document.getElementById('last-name').value;
+                document.getElementById('print-first-name').textContent = document.getElementById('first-name').value;
+                document.getElementById('print-middle-name').textContent = document.getElementById('middle-name').value;
+                document.getElementById('print-address').textContent = document.getElementById('address').value;
+                document.getElementById('print-contact').textContent = document.getElementById('contact').value;
+                document.getElementById('print-civil-status').textContent = document.getElementById('civil-status').value;
+                document.getElementById('print-gender').textContent = document.getElementById('gender').value;
+                document.getElementById('print-occupation').textContent = document.getElementById('occupation').value;
+                document.getElementById('print-age').textContent = document.getElementById('age').value;
+                document.getElementById('print-religion').textContent = document.getElementById('religion').value;
+                document.getElementById('print-birthdate').textContent = document.getElementById('birthdate').value;
+                
+                // Facebook account
+                if (document.getElementById('fb-account').checked) {
+                    document.getElementById('print-fb-circle').classList.add('checked');
+                } else {
+                    document.getElementById('print-fb-circle').classList.remove('checked');
+                }
+                document.getElementById('print-facebook').textContent = document.getElementById('facebook').value;
+                
+                // Beneficiaries
+                const nameInputs = document.querySelectorAll('.ben-name');
+                const ageInputs = document.querySelectorAll('.ben-age');
+                const relationInputs = document.querySelectorAll('.ben-relation');
+                
+                const namePrints = document.querySelectorAll('.ben-name-print');
+                const agePrints = document.querySelectorAll('.ben-age-print');
+                const relationPrints = document.querySelectorAll('.ben-rel-print');
+                
+                // Transfer beneficiary data to print form
+                const maxEntries = Math.min(nameInputs.length, namePrints.length);
+                
+                for (let i = 0; i < maxEntries; i++) {
+                    namePrints[i].textContent = nameInputs[i].value;
+                    agePrints[i].textContent = ageInputs[i].value;
+                    relationPrints[i].textContent = relationInputs[i].value;
+                }
+                
+                // Add more beneficiary lines if necessary
+                if (nameInputs.length > namePrints.length) {
+                    const printBeneficiaries = document.getElementById('print-beneficiaries');
+                    for (let i = namePrints.length; i < nameInputs.length; i++) {
+                        const newLine = document.createElement('div');
+                        newLine.className = 'ben-line';
+                        newLine.innerHTML = `
+                            <span class="ben-name-print">${nameInputs[i].value}</span>
+                            <span class="ben-age-print">${ageInputs[i].value}</span>
+                            <span class="ben-rel-print">${relationInputs[i].value}</span>
+                        `;
+                        printBeneficiaries.appendChild(newLine);
+                    }
+                }
+                
+                // Signature
+                document.getElementById('print-signature').textContent = document.getElementById('signature').value;
+            }
+            
+            // Print buttons
+            document.getElementById('print-btn').addEventListener('click', function() {
+                prepareForPrint();
+                window.print();
+            });
+            
+            document.getElementById('print-btn-bottom').addEventListener('click', function() {
+                prepareForPrint();
+                window.print();
+            });
+            
+            // PDF generation
+            document.getElementById('pdf-btn').addEventListener('click', function() {
+                prepareForPrint();
+                generatePDF();
+            });
+            
+            document.getElementById('pdf-btn-bottom').addEventListener('click', function() {
+                prepareForPrint();
+                generatePDF();
+            });
+            
+            function generatePDF() {
+                const paperSize = document.getElementById('paper-select').value;
+                
+                // Configure PDF dimensions based on selected paper size
+                let pdfConfig = {
+                    margin: 0,
+                    filename: 'salvador-memorial-services-form.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', orientation: 'landscape' }
+                };
+                
+                // Set the format based on paper selection
+                if (paperSize === 'a4') {
+                    pdfConfig.jsPDF.format = 'a4';
+                } else if (paperSize === 'letter') {
+                    pdfConfig.jsPDF.format = 'letter';
+                } else if (paperSize === 'legal') {
+                    pdfConfig.jsPDF.format = [356, 216]; // Legal dimensions in mm
+                }
+                
+                // Generate PDF
+                html2pdf().set(pdfConfig).from(document.querySelector('.print-form')).save();
+            }
+            
+            // Initial setup - Facebook checkbox
+            document.getElementById('fb-account').addEventListener('change', function() {
+                const facebookField = document.getElementById('facebook');
+                if (this.checked) {
+                    facebookField.disabled = false;
+                } else {
+                    facebookField.value = '';
+                    facebookField.disabled = true;
+                }
+            });
+            
+            // Initialize
+            document.getElementById('facebook').disabled = !document.getElementById('fb-account').checked;
+        });
+    </script>
+</body>
+</html>

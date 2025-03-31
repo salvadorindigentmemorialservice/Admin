@@ -1,0 +1,524 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls-wrapper {
+    width: 100%;
+    max-width: 297mm; /* A4 landscape width */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.version-switch .switch-btn {
+    display: inline-block;
+    background-color: #003366;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.paper-select {
+    display: flex;
+    align-items: center;
+}
+
+.paper-select label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.paper-select select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.print-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.print-actions button {
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.print-actions button:hover {
+    background-color: #002244;
+}
+
+/* Form Container */
+.form-container {
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Paper sizes for landscape orientation */
+.form-container.landscape {
+    flex-direction: row;
+}
+
+.form-container.a4 {
+    width: 297mm; /* A4 width in landscape */
+    height: 210mm; /* A4 height in landscape */
+    font-size: 10px;
+}
+
+.form-container.letter {
+    width: 279mm; /* Letter width in landscape (11") */
+    height: 216mm; /* Letter height in landscape (8.5") */
+    font-size: 10px;
+}
+
+.form-container.legal {
+    width: 356mm; /* Legal width in landscape (14") */
+    height: 216mm; /* Legal height in landscape (8.5") */
+    font-size: 11px;
+}
+
+/* Left Panel Styles */
+.left-panel {
+    flex: 1;
+    padding: 15px;
+    border-right: 1px dashed #ccc;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Right Panel Styles */
+.right-panel {
+    flex: 1;
+    padding: 15px;
+    overflow: hidden;
+}
+
+/* Common Header Styles */
+.header, .header-right {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.header h1, .header-right h1 {
+    color: #003366;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-container {
+    margin-right: 15px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #003366;
+    object-fit: cover;
+}
+
+.address {
+    font-size: 1em;
+    color: #003366;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Bank Title Style */
+.bank-title {
+    text-align: center;
+    font-size: 1.8em;
+    color: #003366;
+    font-style: italic;
+    margin: 10px 0;
+    text-decoration: underline;
+}
+
+/* Features Section */
+.features-section {
+    margin-bottom: 10px;
+}
+
+.features-section h3, .benefits-section h3, .inclusions-section h3 {
+    color: #003366;
+    font-size: 1.3em;
+    margin-bottom: 5px;
+}
+
+.features-section ul {
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+.features-section li::before {
+    content: "➤";
+    color: #003366;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.features-section li {
+    font-size: 1.1em;
+    margin-bottom: 2px;
+    color: #003366;
+    white-space: nowrap;
+}
+
+/* Benefits Section */
+.benefits-section {
+    margin-bottom: 10px;
+}
+
+.benefits-section p {
+    font-size: 1.1em;
+    font-style: italic;
+    color: #003366;
+}
+
+/* Inclusions Section */
+.inclusions-section {
+    margin-bottom: 10px;
+}
+
+.inclusions-grid {
+    display: flex;
+}
+
+.inclusions-column {
+    flex: 1;
+}
+
+.inclusion-item {
+    font-size: 1.1em;
+    color: #003366;
+    margin-bottom: 2px;
+}
+
+/* Plans Section */
+.plans-section {
+    margin-bottom: 10px;
+}
+
+.plans-table {
+    width: 100%;
+    font-size: 1.1em;
+    color: #003366;
+    border-collapse: collapse;
+}
+
+.plans-table td {
+    padding: 2px 5px;
+    white-space: nowrap;
+}
+
+.plans-table .price {
+    text-align: right;
+}
+
+/* Client Copy Section */
+.client-copy {
+    border: 1px solid #003366;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.client-form h4 {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #003366;
+}
+
+.field-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 1.1em;
+    color: #003366;
+}
+
+.field-row label {
+    margin-right: 5px;
+    min-width: 80px;
+    white-space: nowrap;
+}
+
+/* Input styling */
+.styled-input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #003366;
+    outline: none;
+    padding: 2px 0;
+    background: transparent;
+    min-width: 100px;
+    font-size: 1em;
+    color: #003366;
+}
+
+.short-input {
+    min-width: 80px;
+    margin-right: 10px;
+    flex: 0.5;
+}
+
+.three-fields label {
+    min-width: auto;
+    margin-right: 5px;
+}
+
+.styled-checkbox {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #003366;
+    border-radius: 50%;
+    margin-right: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.styled-checkbox:checked:after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #003366;
+    font-size: 10px;
+}
+
+/* Slogan */
+.slogan {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.4em;
+    color: #003366;
+    font-weight: bold;
+}
+
+/* Revision mark */
+.revision-mark {
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Right Side Styles */
+.header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.membership-section {
+    margin-top: 10px;
+}
+
+.membership-section h2 {
+    text-align: center;
+    font-size: 1.6em;
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+.name-fields {
+    display: flex;
+    border: 1px solid #003366;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.name-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.name-field label {
+    font-size: 1.1em;
+    color: #003366;
+    margin-bottom: 5px;
+}
+
+.personal-info {
+    border: 1px solid #003366;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* Beneficiaries Section */
+.beneficiaries-section {
+    margin-bottom: 15px;
+}
+
+.beneficiaries-section h3 {
+    color: #003366;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+/* Headers for beneficiaries */
+.beneficiaries-headers {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.ben-name-header {
+    width: 50%;
+    font-weight: bold;
+    color: #003366;
+    font-size: 1.1em;
+}
+
+.ben-age-header {
+    width: 20%;
+    font-weight: bold;
+    color: #003366;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.ben-relation-header {
+    width: 30%;
+    font-weight: bold;
+    color: #003366;
+    text-align: right;
+    font-size: 1.1em;
+}
+
+/* Beneficiary lines */
+.beneficiary-line {
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #003366;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Add Beneficiary button */
+.add-beneficiary-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.add-btn {
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: #002244;
+}
+
+/* Signature Section */
+.signature-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.signature-input {
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid #003366;
+    outline: none;
+    text-align: center;
+    padding: 2px 0;
+    background: transparent;
+    font-size: 1.1em;
+    color: #003366;
+    margin-bottom: 5px;
+}
+
+.signature-section label {
+    font-size: 1.1em;
+    color: #003366;
+}
+
+/* Print-specific styles */
+@media print {
+    @page {
+        size: landscape;
+        margin: 0;
+    }
+    
+    body {
+        background: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .controls-wrapper {
+        display: none;
+    }
+    
+    .form-container {
+        box-shadow: none;
+        width: 100%;
+        height: 100%;
+        font-size: 11pt;
+    }
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 1200px) {
+    .form-container {
+        transform: scale(0.9);
+        transform-origin: top center;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .form-container {
+        transform: scale(0.8);
+        transform-origin: top center;
+    }
+}
