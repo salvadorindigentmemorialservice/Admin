@@ -1,2 +1,2 @@
 # simsFillupform
-https://salvadorindigentmemorialservice.github.io/SIMS/
+https://salvadorindigentmemorialservice.github.io/Admin/
