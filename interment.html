@@ -6,7 +6,8 @@
     <title>Salvador Indigent Memorial Services - Interment Form</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Impact&display=swap'); /* Ensure Impact is loaded if needed */
+        @import url('https://fonts.googleapis.com/css2?family=Impact&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Impact&display=swap');
 
         * {
             margin: 0;
@@ -133,154 +134,152 @@
             text-decoration: underline;
         }
 
-        /* --- A4 Paper Preview --- */
+        /* A4 Paper Preview */
         #interment-preview {
-            width: 210mm; /* A4 width */
-            height: 297mm; /* A4 height - Fixed height */
+            width: 210mm;
+            height: 297mm;
             background-color: white;
-            margin: 30px auto; /* Add margin for better separation on screen */
+            margin: 30px auto;
             position: relative;
             box-sizing: border-box;
-            overflow: hidden; /* Hide overflow */
+            overflow: hidden;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            border: 1px solid #ccc; /* Add border for visual separation */
+            border: 1px solid #ccc;
         }
 
-        /* --- Styles for the content inside the A4 preview --- */
         .print-form {
             width: 100%;
-            height: 100%; /* Make it fill the parent */
-            padding: 30mm 15mm 20mm 15mm; /* Adjust padding (Top, R/L, Bottom) */
-            display: flex; /* Use Flexbox */
-            flex-direction: column; /* Stack elements vertically */
-            align-items: center; /* Center logo */
+            height: 100%;
+            padding: 30mm 15mm 20mm 15mm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             box-sizing: border-box;
-            font-family: Arial, sans-serif; /* Default font */
+            font-family: Arial, sans-serif;
         }
 
         .sims-logo {
-            width: 200px; /* Slightly larger logo */
+            width: 200px;
             height: 200px;
-            margin-top: 0; /* Rely on container padding */
-            margin-bottom: 35px; /* Increased space below logo */
+            margin-top: 0;
+            margin-bottom: 35px;
         }
 
         .memory-text {
-            font-family: 'Homemade Apple', cursive; /* Cursive font */
-            font-size: 30px; /* Slightly larger */
-            margin-bottom: 35px; /* Increased space below */
-            color: #2952a3; /* Blue color from image */
-            text-align: center;
-        }
+        font-family: 'Great Vibes', cursive;
+        font-size: 34px; /* Increased from 30px for better appearance */
+        margin-bottom: 35px;
+        color: #0e077a;
+        text-align: center;
+                    }
 
         .name-text {
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* Bold, blocky font */
-            font-size: 58px; /* Slightly larger */
-            font-weight: bold; /* Ensure bold */
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 58px;
+            font-weight: bold;
             color: black;
             text-align: center;
-            margin-bottom: 30px; /* Increased space below name */
+            margin-bottom: 30px;
             letter-spacing: 1px;
             line-height: 1.1;
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
         }
 
         .detail-text {
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* Bold, blocky font */
-            font-size: 38px; /* Slightly larger */
-            font-weight: bold; /* Ensure bold */
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 38px;
+            font-weight: bold;
             color: black;
             text-align: left;
             width: 100%;
-            padding: 0 10px; /* Indent slightly */
-            margin-bottom: 12px; /* Increased space between details */
+            padding: 0 10px;
+            margin-bottom: 12px;
             letter-spacing: 1px;
         }
-         /* Add extra margin after the last detail */
+
         #preview-age {
-             margin-bottom: 25px; /* More space before the box */
+            margin-bottom: 25px;
         }
 
-        /* Box for Interment Date and Placed */
         .interment-details-box {
             border: 2px solid black;
             width: 100%;
-            margin-top: 30px; /* Increased space above box */
-            margin-bottom: 40px; /* Increased space below box */
-            padding: 20px 25px; /* Increased padding inside box */
+            margin-top: 30px;
+            margin-bottom: 40px;
+            padding: 20px 25px;
             box-sizing: border-box;
         }
 
         .interment-line {
-            font-family: Arial, sans-serif; /* Standard font */
-            font-size: 22px; /* Slightly larger */
-            font-weight: bold; /* Make labels bold */
-            text-align: left;
-            width: 100%;
-            margin-bottom: 20px; /* Increased space between lines */
-            display: flex;
-            align-items: baseline; /* Align text baseline */
-        }
-         .interment-line:last-child {
-             margin-bottom: 5px; /* Less margin for the last item in box */
-         }
-
-        .line-label {
-            white-space: nowrap; /* Prevent label wrapping */
-            margin-right: 8px; /* Space between label and line */
-        }
-
-        .line-content {
-            flex-grow: 1; /* Take remaining space */
-            border-bottom: 2px solid black;
-            height: 1.2em; /* Height relative to font size */
-            display: inline-block;
-            font-weight: normal; /* Input text not bold */
-            font-size: 20px; /* Slightly larger input text size */
-            padding-left: 5px;
-            overflow: hidden; /* Hide overflowing text */
-            white-space: nowrap; /* Prevent text wrapping */
-            text-overflow: ellipsis; /* Show ... for overflow */
-        }
-
-        /* Serviced By Section */
-         .serviced-by-label {
-             font-family: Arial, sans-serif;
-             font-size: 22px; /* Slightly larger */
-             text-align: left;
-             width: 100%;
-             padding: 0 10px; /* Match indent of details */
-             margin-bottom: 8px; /* Increased space below label */
-             font-weight: bold;
-         }
-
-        .service-name-colored {
             font-family: Arial, sans-serif;
-            font-size: 24px; /* Slightly larger */
+            font-size: 22px;
             font-weight: bold;
             text-align: left;
             width: 100%;
-            padding: 0 10px; /* Match indent of details */
-            margin-bottom: 20px; /* Increased space below service name */
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
         }
 
-        /* Colors for Service Name - matched from image */
-        .salvador { color: #8BC34A; } /* Green */
-        .indigent { color: #2952a3; } /* Blue */
-        .memorial { color: #F44336; } /* Red */
-        .services { color: #673AB7; } /* Purple */
+        .interment-line:last-child {
+            margin-bottom: 5px;
+        }
+
+        .line-label {
+            white-space: nowrap;
+            margin-right: 8px;
+        }
+
+        .line-content {
+            flex-grow: 1;
+            border-bottom: 2px solid black;
+            height: 1.2em;
+            display: inline-block;
+            font-weight: normal;
+            font-size: 20px;
+            padding-left: 5px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .serviced-by-label {
+            font-family: Arial, sans-serif;
+            font-size: 22px;
+            text-align: left;
+            width: 100%;
+            padding: 0 10px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .service-name-colored {
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: left;
+            width: 100%;
+            padding: 0 10px;
+            margin-bottom: 20px;
+        }
+
+        .salvador { color: #8BC34A; }
+        .indigent { color: #2952a3; }
+        .memorial { color: #F44336; }
+        .services { color: #673AB7; }
 
         .address-line {
             font-family: Arial, sans-serif;
-            font-size: 15px; /* Slightly larger */
+            font-size: 15px;
             text-align: left;
             width: 100%;
-            padding: 0 10px; /* Match indent */
-            line-height: 1.5; /* Slightly more line spacing */
-            margin-top: auto; /* Push this element to the bottom */
-            /* padding-bottom is handled by container padding now */
+            padding: 0 10px;
+            line-height: 1.5;
+            margin-top: auto;
         }
 
-        /* Preview container for saved image */
         #preview-container {
             display: none;
             margin: 20px 0;
@@ -320,11 +319,10 @@
             transform: translateY(-2px);
         }
 
-        /* Print styles - ensure only the preview prints */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 0; /* Remove browser default margins */
+                margin: 0;
             }
 
             body, html {
@@ -332,44 +330,43 @@
                 padding: 0;
                 background: white;
                 box-shadow: none;
-                -webkit-print-color-adjust: exact; /* Ensure colors print */
-                 print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
             .container, .form-header, .form-group, .buttons, .nav-links, #preview-container, #interment-preview {
-                 box-shadow: none !important;
-                 border: none !important;
-                 margin: 0 !important;
-                 padding: 0 !important; /* Reset padding for preview container itself */
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
             .container, .buttons, .nav-links, #preview-container {
-                display: none !important; /* Hide non-print elements */
+                display: none !important;
             }
 
-             #interment-preview {
-                 display: block !important;
-                 position: relative; /* Use relative for normal flow */
-                 top: 0;
-                 left: 0;
-                 width: 210mm;
-                 height: 297mm; /* Force height for printing */
-                 overflow: hidden; /* Clip content if it overflows */
-                 border: none !important; /* Remove screen border */
-                 margin: 0 !important; /* Remove screen margin */
-                 box-shadow: none !important; /* Remove screen shadow */
-             }
+            #interment-preview {
+                display: block !important;
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 210mm;
+                height: 297mm;
+                overflow: hidden;
+                border: none !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+            }
 
             .print-form {
-                 padding: 25mm 15mm 15mm 15mm; /* Adjust print margins if needed */
-                 height: 100%; /* Ensure it fills the preview div */
-                 box-sizing: border-box; /* Include padding in height */
+                padding: 25mm 15mm 15mm 15mm;
+                height: 100%;
+                box-sizing: border-box;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Input Form Container (Remains the Same) -->
     <div class="container">
         <div class="form-header">
             <div class="logo-container">
@@ -427,7 +424,6 @@
         </div>
     </div>
 
-    <!-- A4 sized interment form preview (Modified Layout for better spacing) -->
     <div id="interment-preview">
         <div class="print-form">
             <img src="logo.png" alt="SIMS Logo" class="sims-logo">
@@ -440,15 +436,14 @@
             <div class="detail-text" id="preview-died">DIED: MARCH 26, 2023</div>
             <div class="detail-text" id="preview-age">AGE: 66 YRS. OLD</div>
 
-            <!-- Box for Interment Date and Placed -->
             <div class="interment-details-box">
                 <div class="interment-line">
                     <span class="line-label">DATE OF INTERNMENT:</span>
                     <span class="line-content" id="preview-interment-date"></span>
                 </div>
                 <div class="interment-line">
-                     <span class="line-label">PLACED:</span>
-                     <span class="line-content" id="preview-placed"></span>
+                    <span class="line-label">PLACED:</span>
+                    <span class="line-content" id="preview-placed"></span>
                 </div>
             </div>
 
@@ -458,7 +453,6 @@
                 <span class="salvador">SALVADOR</span> <span class="indigent">INDIGENT</span> <span class="memorial">MEMORIAL</span> <span class="services">SERVICES</span>
             </div>
 
-            <!-- This element will be pushed to the bottom by margin-top: auto -->
             <div class="address-line">
                 OFFICE ADDRESS: P-8 SINAYAWAN, VALENCIA CITY BUK.<br>
                 CONTACT #: 0926-7921-987/0906-368-6674/0905-076-2726
@@ -497,16 +491,15 @@
 
             // Print form
             printBtn.addEventListener('click', function() {
-                updatePreview(); // Ensure preview is up-to-date before printing
+                updatePreview();
                 setTimeout(() => {
                     window.print();
-                }, 300); // Small delay to allow rendering
+                }, 300);
             });
 
             // Save as PNG
             saveBtn.addEventListener('click', function() {
-                updatePreview(); // Ensure preview is up-to-date
-
+                updatePreview();
                 previewContainer.style.display = 'none';
                 const elementToCapture = document.getElementById('interment-preview');
 
@@ -515,8 +508,6 @@
                     useCORS: true,
                     allowTaint: true,
                     backgroundColor: "#FFFFFF",
-                    // Explicitly set width/height for canvas to match A4 aspect ratio
-                    // This helps if screen rendering differs slightly
                     width: elementToCapture.offsetWidth,
                     height: elementToCapture.offsetHeight
                 }).then(function(canvas) {
@@ -535,7 +526,20 @@
 
             // Function to update preview with form data
             function updatePreview() {
-                previewName.textContent = nameInput.value.toUpperCase() || 'ESTERLITA QUIBOL GARCIA';
+                const name = nameInput.value.toUpperCase() || 'ESTERLITA QUIBOL GARCIA';
+                previewName.textContent = name;
+
+                // Adjust font size based on name length
+                const baseFontSize = 58;
+                const minFontSize = 30;
+                const maxLength = 20;
+                let fontSize = baseFontSize;
+                if (name.length > maxLength) {
+                    const reductionFactor = (name.length - maxLength) / maxLength;
+                    fontSize = Math.max(minFontSize, baseFontSize - (reductionFactor * 20));
+                }
+                previewName.style.fontSize = `${fontSize}px`;
+
                 previewBorn.textContent = `BORN: ${bornInput.value || 'JULY 10, 1956'}`;
                 previewDied.textContent = `DIED: ${diedInput.value || 'MARCH 26, 2023'}`;
                 previewAge.textContent = `AGE: ${ageInput.value || '66'} YRS. OLD`;
@@ -543,12 +547,11 @@
                 previewPlaced.textContent = placedInput.value;
             }
 
-             [nameInput, bornInput, diedInput, ageInput, intermentDateInput, placedInput].forEach(input => {
-                 input.addEventListener('input', updatePreview);
-             });
+            [nameInput, bornInput, diedInput, ageInput, intermentDateInput, placedInput].forEach(input => {
+                input.addEventListener('input', updatePreview);
+            });
 
-             updatePreview(); // Initial update
-
+            updatePreview(); // Initial update
         });
     </script>
 </body>
